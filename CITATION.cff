@@ -1,0 +1,18 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  source code, "Are fast test results preferable to
+  high test sensitivity in contact-tracing
+  strategies?"
+message: >-
+  Cite this code and the published paper if you use
+  the code.
+type: software
+authors:
+  - given-names: Jonas L.
+    family-names: Juul
+    email: jjuul@cornell.edu
+    affiliation: Cornell University
+    orcid: 'https://orcid.org/0000-0002-5728-9269'
