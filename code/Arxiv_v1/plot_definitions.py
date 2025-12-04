@@ -1,3 +1,10 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.ndimage.filters import gaussian_filter
+import copy
+from matplotlib import cm
+
 def make_raw_arrays(filename) :
     df = pd.read_csv(filename)
     
@@ -152,8 +159,8 @@ def make_fig2(X,Y,Z,delays,interpolate = False,figname=None,heatmap='bwr',R_cont
 
 
     # Import packages for plots
-    from mpl_toolkits.axes_grid.inset_locator import (inset_axes, InsetPosition,
-                                                      mark_inset)
+    #from mpl_toolkits.axes_grid.inset_locator import (inset_axes, InsetPosition,
+    #                                                  mark_inset)
     from matplotlib import cm
 
 
