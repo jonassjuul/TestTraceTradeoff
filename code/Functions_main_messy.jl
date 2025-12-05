@@ -39,7 +39,7 @@ function AdvanceInfectedOneTimestep(StateOfNodes,CountUpToStateChange,GoalOfCoun
             CountUpToStateChange[InfectedNode] += 1;
 
             # Check if node changes state.
-            if CountUpToStateChange[InfectedNode] > GoalOfCountDown[InfectedNode]
+            if CountUpToStateChange[InfectedNode] >= GoalOfCountDown[InfectedNode]
                 # Change state of node.
 
                 
@@ -51,11 +51,11 @@ function AdvanceInfectedOneTimestep(StateOfNodes,CountUpToStateChange,GoalOfCoun
 
                 elseif StateOfNodes[InfectedNode]==2
                     # If node is Infectious
-
+                    if CountUpToStateChange[InfectedNode] > GoalOfCountDown[InfectedNode]
                     # Make node Removed
-                    StateOfNodes[InfectedNode],CountUpToStateChange[InfectedNode] = makeNodeRemoved(StateOfNodes[InfectedNode],CountUpToStateChange[InfectedNode]);
-                    NumberOfRecovered +=1;
-
+                        StateOfNodes[InfectedNode],CountUpToStateChange[InfectedNode] = makeNodeRemoved(StateOfNodes[InfectedNode],CountUpToStateChange[InfectedNode]);
+                        NumberOfRecovered +=1;
+                    end
                     # Remember that 1 node recovered.
                     
 
@@ -547,7 +547,7 @@ function makeNodeRemoved(StateOfNodes_individual,CountUpToStateChange_individual
 end
 
 
-function TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren,Asymptomatic,MaximumAllowedInfected,WaitBeforeTestTaken,ProbabilityChildIsTraced, tracedNodes, GoalOfCountDown_traced, timetraced_traced, GoalOfCountDown_untraced)
+function TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren, WhenInfectedWillInfectOthers,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren,Asymptomatic,MaximumAllowedInfected,WaitBeforeTestTaken,ProbabilityChildIsTraced, sumInfectiontimeGivenTracing, tracedNodes, GoalOfCountDown_traced, timetraced_traced, nonvalidtracings, GoalOfCountDown_untraced)
 
     # This function traces children of nodes that tested positive this time step. Also orders test for nodes that got symptomatic this time step.
 
@@ -590,13 +590,16 @@ function TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChild
                         if TestArrivalTimeOfNodes[IDOfTracedChild]<0 && ResultArrivalTimeOfNodes[IDOfTracedChild]<0
                             TestArrivalTimeOfNodes[IDOfTracedChild] = WaitBeforeTestTaken + 0;
                             if StateOfNodes[IDOfTracedChild] == 2
+                                sumInfectiontimeGivenTracing += WhenInfectedWillInfectOthers[FocalNode][NodesChildNumber]
                                 tracedNodes[IDOfTracedChild] = 1
                                 push!(GoalOfCountDown_traced, GoalOfCountDown[IDOfTracedChild])
                                 push!(timetraced_traced, CountUpToStateChange[IDOfTracedChild])
                             else
+                                nonvalidtracings += 1
                                 tracedNodes[IDOfTracedChild] = 2
                             end
                         else
+                            nonvalidtracings += 1
                             tracedNodes[IDOfTracedChild] = 2
                         end
                     end
@@ -606,5 +609,5 @@ function TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChild
         end
 
     end
-    return StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren, tracedNodes, GoalOfCountDown_traced, timetraced_traced, GoalOfCountDown_untraced
+    return StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren, sumInfectiontimeGivenTracing, tracedNodes, GoalOfCountDown_traced, timetraced_traced, nonvalidtracings, GoalOfCountDown_untraced
 end

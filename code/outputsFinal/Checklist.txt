@@ -1,0 +1,12 @@
+50 experiments, Pasymp = 0.3, R0 = 2, 
+
+Wait | Poisson | Geometric | NegativeBinomial 
+0    |         |           |
+1    |     x   |     x     |
+2    |     x   |     x     |
+3    |     x   |     x     |
+4    |     x   |     x     |
+5    |     x   |     x     |
+
+
+
