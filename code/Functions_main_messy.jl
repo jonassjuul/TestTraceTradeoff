@@ -1,4 +1,4 @@
-function AdvanceInfectedOneTimestep(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,NodeCanTestPositive,TraceNodesChildren,MaximumAllowedInfected,R0,MeanOfLognormal,WaitBeforeTestResult,NumberOfRecovered,ProbabilityFalseNegativeTest,OffspringDistribution,InfectiousProfile)
+function AdvanceInfectedOneTimestep(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,NodeCanTestPositive,TraceNodesChildren,MaximumAllowedInfected,R0,MeanOfLognormal,WaitBeforeTestResult,NumberOfRecovered,ProbabilityFalseNegativeTest,OffspringDistribution,InfectiousProfile, pTestDistribution)
     # This function advances all infectious nodes 1 step in their course of disease.
 
     # Inputs:
@@ -68,13 +68,13 @@ function AdvanceInfectedOneTimestep(StateOfNodes,CountUpToStateChange,GoalOfCoun
         StateOfNodes[InfectedNode],TestArrivalTimeOfNodes[InfectedNode],ResultArrivalTimeOfNodes[InfectedNode],NodeCanTestPositive[InfectedNode] = AdvanceTestWaitOneStep(StateOfNodes[InfectedNode],TestArrivalTimeOfNodes[InfectedNode],ResultArrivalTimeOfNodes[InfectedNode],NodeCanTestPositive[InfectedNode],WaitBeforeTestResult)
 
         # Check if node is waiting for a test result.
-        StateOfNodes[InfectedNode],CountUpToStateChange[InfectedNode],GoalOfCountDown[InfectedNode],TestArrivalTimeOfNodes[InfectedNode],ResultArrivalTimeOfNodes[InfectedNode],NodeCanTestPositive[InfectedNode],TraceNodesChildren[InfectedNode],NumberOfRecovered = AdvanceResultWaitOneStep(StateOfNodes[InfectedNode],CountUpToStateChange[InfectedNode],GoalOfCountDown[InfectedNode],TestArrivalTimeOfNodes[InfectedNode],ResultArrivalTimeOfNodes[InfectedNode],NodeCanTestPositive[InfectedNode],TraceNodesChildren[InfectedNode],NumberOfRecovered,ProbabilityFalseNegativeTest)
+        StateOfNodes[InfectedNode],CountUpToStateChange[InfectedNode],GoalOfCountDown[InfectedNode],TestArrivalTimeOfNodes[InfectedNode],ResultArrivalTimeOfNodes[InfectedNode],NodeCanTestPositive[InfectedNode],TraceNodesChildren[InfectedNode],NumberOfRecovered = AdvanceResultWaitOneStep(StateOfNodes[InfectedNode],CountUpToStateChange[InfectedNode],GoalOfCountDown[InfectedNode],TestArrivalTimeOfNodes[InfectedNode],ResultArrivalTimeOfNodes[InfectedNode],NodeCanTestPositive[InfectedNode],TraceNodesChildren[InfectedNode],NumberOfRecovered,ProbabilityFalseNegativeTest, pTestDistribution[InfectedNode])
 
     end
     return StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,NodeCanTestPositive,TraceNodesChildren,WaitBeforeTestResult,NumberOfRecovered,FoundNoInfectiousOrExposedNode
 end
 
-function AdvanceResultWaitOneStep(StateOfNodes_specific,CountUpToStateChange_specific,GoalOfCountDown_specific,TestArrivalTimeOfNodes_specific,ResultArrivalTimeOfNodes_specific,NodeCanTestPositive_specific,TraceNodesChildren_specific,NumberOfRecovered,ProbabilityFalseNegativeTest)
+function AdvanceResultWaitOneStep(StateOfNodes_specific,CountUpToStateChange_specific,GoalOfCountDown_specific,TestArrivalTimeOfNodes_specific,ResultArrivalTimeOfNodes_specific,NodeCanTestPositive_specific,TraceNodesChildren_specific,NumberOfRecovered,ProbabilityFalseNegativeTest, pTestDistribution_specific)
 
     # Check if node is waiting for a test result
     if ResultArrivalTimeOfNodes_specific >=0
@@ -84,7 +84,8 @@ function AdvanceResultWaitOneStep(StateOfNodes_specific,CountUpToStateChange_spe
             ResultRandomVariable = rand()+0;
 
             # If result arrives today, check whether result is false negative and whether node can even test positive.
-            if NodeCanTestPositive_specific==1 && ResultRandomVariable>ProbabilityFalseNegativeTest
+            # if NodeCanTestPositive_specific==1 && ResultRandomVariable>ProbabilityFalseNegativeTest
+            if NodeCanTestPositive_specific==1 && ResultRandomVariable<pTestDistribution_specific[Int(CountUpToStateChange_specific)]
                 # If node has not already recovered, add one node to recovered population
                 if StateOfNodes_specific != 3
                     NumberOfRecovered +=1;
@@ -370,7 +371,7 @@ function getInfectiousnessDistribution(CounterGoalOfNode,InfectiousProfile)
 end
 
 
-function getInitialConditionsOfSimulation(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,InitialNumberOfInfected,R0,MeanOfLognormalDistribution,OffspringDistribution,InfectiousProfile)
+function getInitialConditionsOfSimulation(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,InitialNumberOfInfected,R0,MeanOfLognormalDistribution,OffspringDistribution,InfectiousProfile, pTestDistribution, ProbabilityFalseNegativeTest)
     # Initialized 4 of state vectors.
     # Inputs:
     # ----------
@@ -409,9 +410,11 @@ function getInitialConditionsOfSimulation(StateOfNodes,CountUpToStateChange,Goal
         NumberOfChildrenThisNodeInfects = drawNumberOfChildren(R0OfNode,OffspringDistribution);
         WhenInfectedWillInfectOthers[SeedNumber] = drawTimesWhenInfectedWillInfectOthers(NumberOfChildrenThisNodeInfects, GoalOfCountDown[SeedNumber], InfectiousProfile);
 
+        pTestDistribution[SeedNumber] = getFalseNegativeProbabilityDistribution(ProbabilityFalseNegativeTest, getInfectiousnessDistribution(GoalOfCountDown[SeedNumber],InfectiousProfile), GoalOfCountDown[SeedNumber]); # Initial infected have 50% chance to get tested.
+
     end
 
-    return StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers
+    return StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers, pTestDistribution
 end
 
 function getLognormalDistribution()
@@ -430,7 +433,7 @@ function getMeanOfLognormalDistribution()
 	return MeanOfLognormalDistribution
 end
 
-function InfectNodesOnThisTimestep(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,MaximumAllowedInfected,NumberOfInfected,R0,MeanOfLognormal,OffspringDistribution,InfectiousProfile)
+function InfectNodesOnThisTimestep(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,MaximumAllowedInfected,NumberOfInfected,R0,MeanOfLognormal,OffspringDistribution,InfectiousProfile, pTestDistribution, ProbabilityFalseNegativeTest)
 
     # Inputs
     # --------
@@ -474,7 +477,7 @@ function InfectNodesOnThisTimestep(StateOfNodes,CountUpToStateChange,GoalOfCount
                     if NumberOfInfected <= MaximumAllowedInfected
                         # BEWARE: If exposed state is introduced, the following will make trouble.
                         # Make the node infectious
-                        StateOfNodes[NumberOfInfected],CountUpToStateChange[NumberOfInfected],GoalOfCountDown[NumberOfInfected],WhenInfectedWillInfectOthers[NumberOfInfected] = makeNodeInfectious(StateOfNodes[NumberOfInfected],CountUpToStateChange[NumberOfInfected],GoalOfCountDown[NumberOfInfected],WhenInfectedWillInfectOthers[NumberOfInfected],R0,MeanOfLognormal,OffspringDistribution,InfectiousProfile);
+                        StateOfNodes[NumberOfInfected],CountUpToStateChange[NumberOfInfected],GoalOfCountDown[NumberOfInfected],WhenInfectedWillInfectOthers[NumberOfInfected],pTestDistribution[NumberOfInfected] = makeNodeInfectious(StateOfNodes[NumberOfInfected],CountUpToStateChange[NumberOfInfected],GoalOfCountDown[NumberOfInfected],WhenInfectedWillInfectOthers[NumberOfInfected],R0,MeanOfLognormal,OffspringDistribution,InfectiousProfile,ProbabilityFalseNegativeTest);
                     end
                     # Add newly infected to infecting node's list of children. Used for tracing. 
                     # (have to copy in order to not add the node to _all_ lists in the list)
@@ -486,10 +489,10 @@ function InfectNodesOnThisTimestep(StateOfNodes,CountUpToStateChange,GoalOfCount
         end
     end
 
-    return StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,ListOfChildren,NumberOfInfected
+    return StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,ListOfChildren,NumberOfInfected, pTestDistribution
 end
 
-function makeNodeInfectious(StateOfNodes_individual,CountUpToStateChange_individual,GoalOfCountDown_individual,WhenInfectedWillInfectOthers,R0,MeanOfLognormal,OffspringDistribution,InfectiousProfile)
+function makeNodeInfectious(StateOfNodes_individual,CountUpToStateChange_individual,GoalOfCountDown_individual,WhenInfectedWillInfectOthers,R0,MeanOfLognormal,OffspringDistribution,InfectiousProfile, ProbabilityFalseNegativeTest)
     # This function changes the state of a node from Exposed to Infectious.
 
     # Inputs
@@ -516,11 +519,12 @@ function makeNodeInfectious(StateOfNodes_individual,CountUpToStateChange_individ
     GoalOfCountDown_individual = 2*drawLognormallyDistributedInteger(); ;
 
     # Find out how many people this infectious node will infect.
-    R0OfNode = R0 * GoalOfCountDown_individual / (2*MeanOfLognormal);
+    R0OfNode = R0 * GoalOfCountDown_individual / (2*MeanOfLognormal); 
     NumberOfChildrenToDraw = drawNumberOfChildren(R0OfNode,OffspringDistribution);
     WhenInfectedWillInfectOthers_individual = drawTimesWhenInfectedWillInfectOthers(NumberOfChildrenToDraw, GoalOfCountDown_individual, InfectiousProfile);
+    pTestDistribution_individual = getFalseNegativeProbabilityDistribution(ProbabilityFalseNegativeTest, getInfectiousnessDistribution(GoalOfCountDown_individual,InfectiousProfile), GoalOfCountDown_individual);
 
-    return StateOfNodes_individual,CountUpToStateChange_individual,GoalOfCountDown_individual,WhenInfectedWillInfectOthers_individual
+    return StateOfNodes_individual,CountUpToStateChange_individual,GoalOfCountDown_individual,WhenInfectedWillInfectOthers_individual, pTestDistribution_individual
 
 end
 
@@ -610,4 +614,24 @@ function TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChild
 
     end
     return StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren, sumInfectiontimeGivenTracing, tracedNodes, GoalOfCountDown_traced, timetraced_traced, nonvalidtracings, GoalOfCountDown_untraced
+end
+
+function getFalseNegativeProbabilityDistribution(p_false, infectiousness, GoalOfCountDown_individual)
+    p_test = 1.0 - p_false
+    weighted_p_test = (p_test).*infectiousness*GoalOfCountDown_individual
+    while sum(weighted_p_test .> 1) != 0
+        for i = 1:Int(GoalOfCountDown_individual)
+            numberabove1 = sum(weighted_p_test .>= 1)
+            if weighted_p_test[i] >= 1
+                delta = (weighted_p_test[i] - 1.0)
+                weighted_p_test[i] -= delta
+                for j = 1:Int(GoalOfCountDown_individual)
+                    if weighted_p_test[j] < 1
+                        weighted_p_test[j] += delta/(GoalOfCountDown_individual-numberabove1)
+                    end
+                end
+            end
+        end
+    end
+    return weighted_p_test
 end

@@ -27,8 +27,8 @@ InfectiousProfile = "empirical";
 MeanOfLognormal = getMeanOfLognormalDistribution();
 
 # Societal details
-WaitBeforeTestTaken  = 1;  # Number of days before test is taken
-WaitBeforeTestResult  = 4; # Number of days before test result arrives after test is taken
+WaitBeforeTestTaken  = 0;  # Number of days before test is taken
+WaitBeforeTestResult  = 0; # Number of days before test result arrives after test is taken
 
 # Test-and-trace details
 ProbabilityChildIsTraced  = -0.02; #+34*0.02 // Fraction of children that are found through contact tracing
@@ -36,15 +36,15 @@ ProbabilityFalseNegativeTest = -0.02;
 linspace = 51;
 #--------------------
 # Define directory where results will be saved
-DirectoryToSaveResults = "code/OutputsFinal/";
+DirectoryToSaveResults = "code/OutputsMorten/";
 
 # Define Filename where results will be saved
-FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfInfected,"_Nexp",NumberOfExperiments,"_R0",R0,"_WaitBeforeTestTaken",WaitBeforeTestTaken,"_WaitBeforeTestResult",WaitBeforeTestResult, "_Asymptomatics",AsymptomaticFractionOfInfected,"_InfectiousProfile",InfectiousProfile,"_OffspringDistribution", OffspringDistribution,".txt");
+FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfInfected,"_Nexp",NumberOfExperiments,"_R0",R0,"_WaitBeforeTestTaken",WaitBeforeTestTaken,"_WaitBeforeTestResult",WaitBeforeTestResult, "_Asymptomatics",AsymptomaticFractionOfInfected,"_InfectiousProfile",InfectiousProfile,"_OffspringDistribution", OffspringDistribution,"full.txt");
 
 # First list in filename where results will be saved specifies columns
 FirstLineInFile = string("False negative test rate,","Tracing efficiency,","N_infected_done,","N_recovered,","ReffMean,","ReffStd,","ReffTheoretical,","N_traced");
 
-# Check if file already exists and handle accordingly
+#Check if file already exists and handle accordingly
 if isfile(string(DirectoryToSaveResults,FilenameToSaveResults))
     println("ERROR: File already exists: ", string(DirectoryToSaveResults,FilenameToSaveResults))
     println("Please remove the existing file or change the filename to avoid overwriting data.")
@@ -57,7 +57,7 @@ AppendLineToFile(string(DirectoryToSaveResults,FilenameToSaveResults),FirstLineI
 #   1. Contact tracing efficiency (probability that a child is traced when parent gets tested positive.)
 #   2. Test sensitivity
 
-elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
+elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:51
     # Each time model is run for a new Tracing Efficiency Value, increase ProbabilityChildIsTraced
     global ProbabilityChildIsTraced += 0.02;
     global WaitBeforeTestTaken = WaitBeforeTestTaken;
@@ -72,7 +72,7 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
         testsentivitylinspace = linspace
     end
 
-    for TestSensitivityValueNumber =1:testsentivitylinspace
+    for TestSensitivityValueNumber =1:51
         # Each time model is run for a new Tracing Efficiency Value, increase ProbabilityFalseNegativeTest
         global ProbabilityFalseNegativeTest += 0.02;
         # Print progress.
@@ -169,9 +169,11 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
         count = 0
         Nuntrace = length(GoalOfCountDown_untraced)
         randomVariable = 0
-        for test in 1:Nuntrace
+                for test in 1:Nuntrace
             t_half = GoalOfCountDown_untraced[test] /2 + 1
             InfectiousnessDistribution = getInfectiousnessDistribution(GoalOfCountDown_untraced[test], InfectiousProfile);
+            R0OfNode = R0 * GoalOfCountDown_untraced[test] / (2*MeanOfLognormal);
+            NumberOfChildrenToDraw = drawNumberOfChildren(R0OfNode,"poisson")
             L = length(InfectiousnessDistribution);
 
             # Convert to integer indices
@@ -179,12 +181,12 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
             b2 = b1 + τ;
 
             if b2 <= L
-                I1untrace += sum(InfectiousnessDistribution[b2+1:end]);
-                I2untrace += sum(InfectiousnessDistribution[b1+1:b2]);
+                I1untrace += sum(InfectiousnessDistribution[b2+1:end])*NumberOfChildrenToDraw;
+                I2untrace += sum(InfectiousnessDistribution[b1+1:b2])*NumberOfChildrenToDraw;
             else
                 I1untrace += 0;
-                I2untrace += sum(InfectiousnessDistribution[b1+1:end]);
-                count += 1
+                I2untrace += sum(InfectiousnessDistribution[b1+1:end])*NumberOfChildrenToDraw;
+                count += 1;
             end
         end
 
@@ -193,19 +195,21 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
         I1trace = 0.0
         I2trace = 0.0
         Ntrace = length(timetraced_traced)
-        if Ntrace != 0
+                if Ntrace != 0
             for i in 1:Ntrace
                 InfectiousnessDistribution = getInfectiousnessDistribution(GoalOfCountDown_traced[i], InfectiousProfile);
+                R0OfNode = R0 * GoalOfCountDown_traced[i] / (2*MeanOfLognormal);
+                NumberOfChildrenToDraw = drawNumberOfChildren(R0OfNode,"poisson")
                 L = length(InfectiousnessDistribution);
                 b1 = Int(timetraced_traced[i]);
                 b2 = b1 + τ;
 
                 if b2 <= L
-                    I1trace += sum(InfectiousnessDistribution[b2+1:end]);
-                    I2trace += sum(InfectiousnessDistribution[b1+1:b2]);
+                    I1trace += sum(InfectiousnessDistribution[b2+1:end])*NumberOfChildrenToDraw;
+                    I2trace += sum(InfectiousnessDistribution[b1+1:b2])*NumberOfChildrenToDraw;
                 else
                     I1trace += 0;
-                    I2trace += sum(InfectiousnessDistribution[b1+1:end]);
+                    I2trace += sum(InfectiousnessDistribution[b1+1:end])*NumberOfChildrenToDraw;
                 end
             end
 
@@ -220,8 +224,9 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
             pTraceEff = 0.0
         end
 
-        theoreticalMean = R0*(1 - (1-pTraceEff)*theoreticalMean_NoTracingTerm - pTraceEff*theoreticalMean_TracingTerm)
-        
+        theoreticalMean = (R0 - (1-pTraceEff)*theoreticalMean_NoTracingTerm - pTraceEff*theoreticalMean_TracingTerm)
+        print("Theoretical Reff:\t", theoreticalMean, "\n")
+        print("Empirical Reff:\t", mean(EffectiveReproduction), "\n")
         # Print averaged results to file.
         AveragedResultsToPrintToFile = string(ProbabilityFalseNegativeTest,",",ProbabilityChildIsTraced,",",InfectedPeople_AveragedOverExperiments,",",RecoveredPeople_AveragedOverExperiments,",",mean(EffectiveReproduction), ",", std(EffectiveReproduction)/sqrt(NumberOfExperiments), ",", theoreticalMean, ",", Ntrace/NumberOfExperiments);
         AppendLineToFile(string(DirectoryToSaveResults,FilenameToSaveResults),AveragedResultsToPrintToFile)
@@ -229,3 +234,5 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
     end
 end
 print("\n Total elapsed time:\t", elapsed_time, " seconds.\n")
+
+

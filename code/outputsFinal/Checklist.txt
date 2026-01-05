@@ -1,7 +1,7 @@
 50 experiments, Pasymp = 0.3, R0 = 2, 
 
 Wait | Poisson | Geometric | NegativeBinomial 
-0    |         |           |
+0    |     x   |     x     |
 1    |     x   |     x     |
 2    |     x   |     x     |
 3    |     x   |     x     |
@@ -9,4 +9,34 @@ Wait | Poisson | Geometric | NegativeBinomial
 5    |     x   |     x     |
 
 
+50 experiments, Pasymp = 0.6, R0 = 2, 
 
+Wait | Poisson | 
+0    |     x   | 
+1    |     x   |  
+2    |     x   | 
+3    |     x   | 
+4    |     x   | 
+5    |     x   | 
+
+
+50 experiments, Pasymp = 0.3, R0 = 3, 
+
+Wait | Poisson | 
+0    |   x     | 
+1    |   x     |  
+2    |   x     | 
+3    |   x     | 
+4    |   x     | 
+5    |   x     | 
+
+
+50 experiments, Pasymp = 0.3, R0 = 10, 
+
+Wait | Poisson | 
+0    |     x   | 
+1    |     x   |  
+2    |     x   | 
+3    |     x   | 
+4    |     x   | 
+5    |     x   | 

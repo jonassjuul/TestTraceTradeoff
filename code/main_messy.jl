@@ -2,7 +2,7 @@
 using DelimitedFiles
 using Statistics
 # Include my functions.....
-include("Functions_main.jl")
+include("Functions_main_messy.jl")
 
 
 # Definitions
@@ -13,14 +13,14 @@ InitialNumberOfInfected  = 100;      # Infectious at start
 MaximumAllowedInfected = 100000; # How many people will we maximally get?
 N = MaximumAllowedInfected; # For theoretical calculations
 
-NumberOfExperiments  = 2; # Number of experiments
+NumberOfExperiments  = 50; # Number of experiments
 
 # Epidemiological details
 AsymptomaticFractionOfInfected = 0.3;# Fraction of infected that never get symptoms. 
 
 R0 = 2.0; #3//2.5 # Mean number of children in full period of infection.
-#OffspringDistribution = "poisson";
-OffspringDistribution = "geometric";
+OffspringDistribution = "poisson";
+# OffspringDistribution = "geometric";
 
 InfectiousProfile = "empirical";
 #InfectiousProfile = "FlatSkewed";
@@ -31,7 +31,7 @@ WaitBeforeTestTaken  = 0;  # Number of days before test is taken
 WaitBeforeTestResult  = 0; # Number of days before test result arrives after test is taken
 
 # Test-and-trace details
-ProbabilityChildIsTraced  = -0.02; #+34*0.02 // Fraction of children that are found through contact tracing
+ProbabilityChildIsTraced  = 0.78; #+34*0.02 // Fraction of children that are found through contact tracing
 ProbabilityFalseNegativeTest = -0.02;
 linspace = 51;
 empiricalMean = zeros(linspace, linspace);
@@ -45,7 +45,7 @@ PTraceValidMatrix = zeros(linspace,linspace);
 avgProportionTracedTheoretical = zeros(linspace,linspace);
 #--------------------
 # Define directory where results will be saved
-DirectoryToSaveResults = "code/OutputsFinal/";
+DirectoryToSaveResults = "code/OutputspfalseDistribution/";
 
 # Define Filename where results will be saved
 FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfInfected,"_Nexp",NumberOfExperiments,"_R0",R0,"_WaitBeforeTestTaken",WaitBeforeTestTaken,"_WaitBeforeTestResult",WaitBeforeTestResult, "_Asymptomatics",AsymptomaticFractionOfInfected,"_InfectiousProfile",InfectiousProfile,"_OffspringDistribution", OffspringDistribution,".txt");
@@ -58,7 +58,7 @@ AppendLineToFile(string(DirectoryToSaveResults,FilenameToSaveResults),FirstLineI
 #   1. Contact tracing efficiency (probability that a child is traced when parent gets tested positive.)
 #   2. Test sensitivity
 
-elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
+elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:21
     # Each time model is run for a new Tracing Efficiency Value, increase ProbabilityChildIsTraced
     global ProbabilityChildIsTraced += 0.02;
     global WaitBeforeTestTaken = WaitBeforeTestTaken;
@@ -119,12 +119,12 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
 
             WhenInfectedWillInfectOthers = fill(Int[], MaximumAllowedInfected,1); # List at entry i contains days after infection when node i will infect other nodes.
             ListOfChildren = fill(Int[], MaximumAllowedInfected,1); # List at entry i contains nodes that node i infected. Used for contact tracing.
-
+            pTestDistribution = fill(Float64[], MaximumAllowedInfected,1);
             # Add this after the simulation completes to count entries
             
 
             # Infect a number of people at start of simulation
-            StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers = getInitialConditionsOfSimulation(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,InitialNumberOfInfected,R0,MeanOfLognormal,OffspringDistribution,InfectiousProfile);
+            StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers, pTestDistribution = getInitialConditionsOfSimulation(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,InitialNumberOfInfected,R0,MeanOfLognormal,OffspringDistribution,InfectiousProfile, pTestDistribution, ProbabilityFalseNegativeTest);
 
 
 
@@ -135,7 +135,7 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
                 # Advance Time 1 step
                 TimeStep +=1;
                 # Advance all infected and all waiting 1 time step.
-                StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,NodeCanTestPositive,TraceNodesChildren,WaitBeforeTestResult,NumberOfRecovered,FoundNoInfectiousOrExposedNode = AdvanceInfectedOneTimestep(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,NodeCanTestPositive,TraceNodesChildren,MaximumAllowedInfected,R0,MeanOfLognormal,WaitBeforeTestResult,NumberOfRecovered,ProbabilityFalseNegativeTest,OffspringDistribution,InfectiousProfile)
+                StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,NodeCanTestPositive,TraceNodesChildren,WaitBeforeTestResult,NumberOfRecovered,FoundNoInfectiousOrExposedNode = AdvanceInfectedOneTimestep(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,NodeCanTestPositive,TraceNodesChildren,MaximumAllowedInfected,R0,MeanOfLognormal,WaitBeforeTestResult,NumberOfRecovered,ProbabilityFalseNegativeTest,OffspringDistribution,InfectiousProfile, pTestDistribution)
 
                 # If no nodes are infectiuos or exposed, stop simulation.
                 if FoundNoInfectiousOrExposedNode == true
@@ -144,7 +144,7 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
                 end
 
                 # Infect all children that are due to get infected this time step.
-                StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,ListOfChildren,NumberOfInfected=InfectNodesOnThisTimestep(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,MaximumAllowedInfected,NumberOfInfected,R0,MeanOfLognormal,OffspringDistribution,InfectiousProfile);
+                StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,ListOfChildren,NumberOfInfected, pTestDistribution=InfectNodesOnThisTimestep(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,MaximumAllowedInfected,NumberOfInfected,R0,MeanOfLognormal,OffspringDistribution,InfectiousProfile, pTestDistribution, ProbabilityFalseNegativeTest);
 
                 # Trace nodes that should get traced this time step and test nodes that get symptoms.
                 StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren, sumInfectiontimeGivenTracing, tracedNodes, GoalOfCountDown_traced, timetraced_traced, nonvalidtracings, GoalOfCountDown_untraced = TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,WhenInfectedWillInfectOthers,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren,Asymptomatic,MaximumAllowedInfected,WaitBeforeTestTaken,ProbabilityChildIsTraced,sumInfectiontimeGivenTracing,tracedNodes,GoalOfCountDown_traced,timetraced_traced, nonvalidtracings, GoalOfCountDown_untraced);
@@ -176,9 +176,9 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
             #print(NumberOfRecovered," number of recovered\n", NumberOfInfected," number of infected\n")
 
         end
-        print("\n Ended pandemics:\t",endedPandemics," out of ",NumberOfExperiments,"\n")
-        print("Average day of infection:\t",averageDayofInfection,"\n")
-        print("Average day of infection given tracing:\t",averageDayofInfectionGivenTracing,"\n")
+        #print("\n Ended pandemics:\t",endedPandemics," out of ",NumberOfExperiments,"\n")
+        #print("Average day of infection:\t",averageDayofInfection,"\n")
+        #print("Average day of infection given tracing:\t",averageDayofInfectionGivenTracing,"\n")
         # averageDayofInfectionMatrix[TracingEfficiencyValueNumber, TestSensitivityValueNumber] = averageDayofInfection
         # averageDayofInfectionTracingMatrix[TracingEfficiencyValueNumber, TestSensitivityValueNumber] = averageDayofInfectionGivenTracing
         # averagenumbertracedMatrix[TracingEfficiencyValueNumber, TestSensitivityValueNumber] = avgnumbertraced
@@ -196,6 +196,8 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
         for test in 1:Nuntrace
             t_half = GoalOfCountDown_untraced[test] /2 + 1
             InfectiousnessDistribution = getInfectiousnessDistribution(GoalOfCountDown_untraced[test], InfectiousProfile);
+            R0OfNode = R0 * GoalOfCountDown_untraced[test] / (2*MeanOfLognormal);
+            NumberOfChildrenToDraw = drawNumberOfChildren(R0OfNode,"poisson")
             L = length(InfectiousnessDistribution);
 
             # Convert to integer indices
@@ -203,12 +205,12 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
             b2 = b1 + τ;
 
             if b2 <= L
-                I1 += sum(InfectiousnessDistribution[b2+1:end]);
-                I2 += sum(InfectiousnessDistribution[b1+1:b2]);
+                I1 += sum(InfectiousnessDistribution[b2+1:end])*NumberOfChildrenToDraw;
+                I2 += sum(InfectiousnessDistribution[b1+1:b2])*NumberOfChildrenToDraw;
             else
                 I1 += 0;
-                I2 += sum(InfectiousnessDistribution[b1+1:end]);
-                count += 1
+                I2 += sum(InfectiousnessDistribution[b1+1:end])*NumberOfChildrenToDraw;
+                count += 1;
             end
         end
         print("Average untraced variable:\t", sum(GoalOfCountDown_untraced)/Nuntrace, "\n")
@@ -223,16 +225,18 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
         if Ntrace != 0
             for i in 1:Ntrace
                 InfectiousnessDistribution = getInfectiousnessDistribution(GoalOfCountDown_traced[i], InfectiousProfile);
+                R0OfNode = R0 * GoalOfCountDown_traced[i] / (2*MeanOfLognormal);
+                NumberOfChildrenToDraw = drawNumberOfChildren(R0OfNode,"poisson")
                 L = length(InfectiousnessDistribution);
                 b1 = Int(timetraced_traced[i]);
                 b2 = b1 + τ;
 
                 if b2 <= L
-                    I1trace += sum(InfectiousnessDistribution[b2+1:end]);
-                    I2trace += sum(InfectiousnessDistribution[b1+1:b2]);
+                    I1trace += sum(InfectiousnessDistribution[b2+1:end])*NumberOfChildrenToDraw;
+                    I2trace += sum(InfectiousnessDistribution[b1+1:b2])*NumberOfChildrenToDraw;
                 else
                     I1trace += 0;
-                    I2trace += sum(InfectiousnessDistribution[b1+1:end]);
+                    I2trace += sum(InfectiousnessDistribution[b1+1:end])*NumberOfChildrenToDraw;
                 end
             end
 
@@ -244,15 +248,18 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
         pTraceEff = (1-AsymptomaticFractionOfInfected)*ProbabilityChildIsTraced*(1-ProbabilityFalseNegativeTest)/(1-AsymptomaticFractionOfInfected*ProbabilityChildIsTraced*(1-ProbabilityFalseNegativeTest))
         avgProportionTracedTheoretical[TracingEfficiencyValueNumber, TestSensitivityValueNumber] = PTraceValidArrayexp*(1-AsymptomaticFractionOfInfected)*ProbabilityChildIsTraced*(1-ProbabilityFalseNegativeTest)/(1-AsymptomaticFractionOfInfected*ProbabilityChildIsTraced*(1-ProbabilityFalseNegativeTest)*PTraceValidArrayexp)
         if Ntrace != 0
-            print("valid traces proportion version 2:\t", PTraceValidArrayexp, "\n")
+            # print("valid traces proportion version 2:\t", PTraceValidArrayexp, "\n")
             pTraceEff = (PTraceValidArrayexp/nExpWithTracings)*(1-AsymptomaticFractionOfInfected)*ProbabilityChildIsTraced*(1-ProbabilityFalseNegativeTest)/(1-AsymptomaticFractionOfInfected*ProbabilityChildIsTraced*(1-ProbabilityFalseNegativeTest)*(PTraceValidArrayexp/nExpWithTracings))
             #empirical value
-            print("Adjusted pTraceEff:\t", pTraceEff, "\t Empiric value in comparison: ",avgProportionTraced,  "\n")
-            print("Difference theoretical-empirical proportion traced: \t", avgProportionTraced - pTraceEff, "\n")
+            # print("Adjusted pTraceEff:\t", pTraceEff, "\t Empiric value in comparison: ",avgProportionTraced,  "\n")
+            # print("Difference theoretical-empirical proportion traced: \t", avgProportionTraced - pTraceEff, "\n")
             pTraceEff = avgProportionTraced 
         end
 
-        theoreticalMean = R0*(1 - (1-pTraceEff)*theoreticalMean_NoTracingTerm - pTraceEff*theoreticalMean_TracingTerm)
+        theoreticalMean = (R0 - (1-pTraceEff)*theoreticalMean_NoTracingTerm - pTraceEff*theoreticalMean_TracingTerm)
+
+        print("Theoretical Mean: ", theoreticalMean, "\n")
+        print("Empirical Mean: ", mean(EffectiveReproduction),"+-", std(EffectiveReproduction),"\n")
         
         #TheoreticalMeanv2 = R0*AsymptomaticFractionOfInfected + R0*(1-AsymptomaticFractionOfInfected)*((1-ProbabilityFalseNegativeTest)*I3/N+ProbabilityFalseNegativeTest*(1-I2/N))
         # Print averaged results to file.
@@ -274,12 +281,12 @@ print("\n Total elapsed time:\t", elapsed_time, " seconds.\n")
 writedlm(string(DirectoryToSaveResults, "empiricalMean_wait$(WaitBeforeTestResult + WaitBeforeTestTaken)NumExp$(NumberOfExperiments)withSampledPefftraced.txt"), empiricalMean)
 writedlm(string(DirectoryToSaveResults, "theoreticalMean_wait$(WaitBeforeTestResult + WaitBeforeTestTaken)NumExp$(NumberOfExperiments)withSampledPefftraced.txt"), theoreticalMeanArray)
 
-# Save matrices to files
-writedlm(string(DirectoryToSaveResults, "averageDayofInfectionMatrix_wait$(WaitBeforeTestResult + WaitBeforeTestTaken).txt"), averageDayofInfectionMatrix)
-writedlm(string(DirectoryToSaveResults, "averageDayofInfectionTracingMatrix_wait$(WaitBeforeTestResult + WaitBeforeTestTaken).txt"), averageDayofInfectionTracingMatrix)
-writedlm(string(DirectoryToSaveResults,"averagenumbertracedMatrix_wait$(WaitBeforeTestResult + WaitBeforeTestTaken).txt"),averagenumbertracedMatrix)
-writedlm(string(DirectoryToSaveResults,"averageproportiontracedMatrix_wait$(WaitBeforeTestResult + WaitBeforeTestTaken).txt"),avgProportionTracedMatrix)
-writedlm(string(DirectoryToSaveResults,"averagepandemicended_wait$(WaitBeforeTestResult + WaitBeforeTestTaken).txt"),avgPandemicEnded)
+# # Save matrices to files
+# writedlm(string(DirectoryToSaveResults, "averageDayofInfectionMatrix_wait$(WaitBeforeTestResult + WaitBeforeTestTaken).txt"), averageDayofInfectionMatrix)
+# writedlm(string(DirectoryToSaveResults, "averageDayofInfectionTracingMatrix_wait$(WaitBeforeTestResult + WaitBeforeTestTaken).txt"), averageDayofInfectionTracingMatrix)
+# writedlm(string(DirectoryToSaveResults,"averagenumbertracedMatrix_wait$(WaitBeforeTestResult + WaitBeforeTestTaken).txt"),averagenumbertracedMatrix)
+# writedlm(string(DirectoryToSaveResults,"averageproportiontracedMatrix_wait$(WaitBeforeTestResult + WaitBeforeTestTaken).txt"),avgProportionTracedMatrix)
+# writedlm(string(DirectoryToSaveResults,"averagepandemicended_wait$(WaitBeforeTestResult + WaitBeforeTestTaken).txt"),avgPandemicEnded)
 
 
 
@@ -400,21 +407,25 @@ println("Average number of children drawn:\t", sumNumberOfChildrenToDraw/N)
 
 
 # Check distribution of infection times
-observations = []
+observations = [];
+R0 = 2;
+infectlength = 10
 for i in 1:100000
-    k = drawNumberOfChildren(2,"poisson")
-    push!(observations, drawTimesWhenInfectedWillInfectOthers(k,10,"empirical")...)
+    k = drawNumberOfChildren(2,"poisson");
+    push!(observations, drawTimesWhenInfectedWillInfectOthers(k,infectlength,"empirical")...);
 end
-histogram(observations, bins=10, xlabel="Day of infection", ylabel="Frequency", title="Histogram of Infection Times", normalized=true)
-scatter!(1:10, getInfectiousnessDistribution(10,"empirical"), label="Infectiousness Distribution", alpha=0.5, normalized=true)
-
+histogram(observations, bins=0.5:1:infectlength+0.5, xlabel="Day of infection", ylabel="Frequency", title="Histogram of Infection Times", normalized=true)
+scatter!(1:infectlength, getInfectiousnessDistribution(infectlength,"empirical"), 
+         label="Infectiousness Distribution", alpha=0.5, 
+         legend=:bottom)
 
 
 #Test mean of t_infect
-
+R0 = 10;
 totalInfectionTime = 0.0;
 numSamples = 100000;
 totalSum = 0;
+samples = [];
 for i in 1:numSamples
     GoalOfCountDown_individual = 2*drawLognormallyDistributedInteger();
     R0OfNode = R0 * GoalOfCountDown_individual / (2*MeanOfLognormal);
@@ -422,8 +433,28 @@ for i in 1:numSamples
     if NumberOfChildrenToDraw == 0
         continue
     end
+    if GoalOfCountDown_individual > 119
+        continue
+    end
     WhenInfectedWillInfectOthers_individual = drawTimesWhenInfectedWillInfectOthers(NumberOfChildrenToDraw,GoalOfCountDown_individual,"empirical")
-    totalInfectionTime += sum(WhenInfectedWillInfectOthers_individual)
-    totalSum += length(WhenInfectedWillInfectOthers_individual)
+    normalisedWhenWillInfect = WhenInfectedWillInfectOthers_individual ./ GoalOfCountDown_individual
+    
+    samples = push!(samples, normalisedWhenWillInfect...)
+
 end
-println("Average infection time: ", totalInfectionTime/totalSum)
+
+using Plots
+histogram(samples, bins=20, xlabel="Normalized Infection Time", ylabel="Frequency", title="Histogram of Normalized Infection Times", alpha=0.7, normalize=:pdf)
+scatter!(0:0.05:1, getInfectiousnessDistribution(20,"empirical"), 
+         label="Infectiousness Distribution", alpha=0.5, 
+         legend=:topright)
+
+p_false = 0.1 #round(rand(), digits=2)
+GoalOfCountDown_individual = 8 #2*drawLognormallyDistributedInteger();
+
+weighted_p_test = getFalseNegativeProbabilityDistribution(p_false, getInfectiousnessDistribution(GoalOfCountDown_individual,"empirical"), GoalOfCountDown_individual)
+print("mean is " ,mean(weighted_p_test))   
+plot((1-p_false).*getInfectiousnessDistribution(GoalOfCountDown_individual,"empirical")*GoalOfCountDown_individual, xlabel="Weighted False Negative Probability", alpha=0.7, label = "Weighted test sensitivity profile", title = "p_false=$(p_false)  ")
+plot!(weighted_p_test, xlabel="Adjusted Weighted test sensitivity Probability", alpha=0.7, label = "adjusted Weighted test sensitivity profile")
+plot!(getInfectiousnessDistribution(GoalOfCountDown_individual,"empirical"), xlabel="infectious profile", alpha=0.7, label ="Infectious profile")
+
