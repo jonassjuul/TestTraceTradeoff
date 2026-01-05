@@ -33,10 +33,10 @@ WaitBeforeTestResult  = 0; # Number of days before test result arrives after tes
 # Test-and-trace details
 ProbabilityChildIsTraced  = -0.02; #+34*0.02 // Fraction of children that are found through contact tracing
 ProbabilityFalseNegativeTest = -0.02;
-linspace = 51;
+linspace = 1;
 #--------------------
 # Define directory where results will be saved
-DirectoryToSaveResults = "code/OutputsMorten/";
+DirectoryToSaveResults = "code/OutputsHPC/";
 
 # Define Filename where results will be saved
 FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfInfected,"_Nexp",NumberOfExperiments,"_R0",R0,"_WaitBeforeTestTaken",WaitBeforeTestTaken,"_WaitBeforeTestResult",WaitBeforeTestResult, "_Asymptomatics",AsymptomaticFractionOfInfected,"_InfectiousProfile",InfectiousProfile,"_OffspringDistribution", OffspringDistribution,"full.txt");

@@ -15,4 +15,4 @@ module load Julia
 hostname
 
 # Run the Julia script
-julia /home/morah/TestTraceTradeoff/code/testscript.jl
+julia /home/morah/TestTraceTradeoff/code/main.jl
