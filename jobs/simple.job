@@ -7,8 +7,10 @@
 #SBATCH --partition=scavenge    # Run on scavenge queue (all nodes, low priority)
 
 # Print out the hostname of the node the job is running on
+
+module --ignore_cache load "Julia"
+
 hostname
-module load Julia
 
 # Run the Julia script
 julia /home/morah/TestTraceTradeoff/code/testscript.jl
