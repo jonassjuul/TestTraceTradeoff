@@ -33,7 +33,7 @@ WaitBeforeTestResult  = ARGS[2]; # Number of days before test result arrives aft
 # Test-and-trace details
 ProbabilityChildIsTraced  = -0.02; #+34*0.02 // Fraction of children that are found through contact tracing
 ProbabilityFalseNegativeTest = -0.02;
-linspace = 1;
+linspace = 51;
 #--------------------
 # Define directory where results will be saved
 DirectoryToSaveResults = "code/OutputsHPC/";
