@@ -8,3 +8,7 @@
 
 # Print out the hostname of the node the job is running on
 hostname
+module load Julia/1.10.0-linux-x86_64
+
+# Run the Julia script
+julia /home/morah/TestTraceTradeoff/code/testscript.jl
