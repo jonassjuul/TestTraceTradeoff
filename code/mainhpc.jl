@@ -16,9 +16,9 @@ N = MaximumAllowedInfected; # For theoretical calculations
 NumberOfExperiments  = 50; # Number of experiments
 
 # Epidemiological details
-AsymptomaticFractionOfInfected = ARGS[3];# Fraction of infected that never get symptoms. 
+AsymptomaticFractionOfInfected = parse(Float64, ARGS[3]);# Fraction of infected that never get symptoms. 
 
-R0 = ARGS[4]; #3//2.5 # Mean number of children in full period of infection.
+R0 = parse(Float64, ARGS[4]); #3//2.5 # Mean number of children in full period of infection.
 OffspringDistribution = "poisson";
 # OffspringDistribution = "geometric";
 
@@ -27,8 +27,8 @@ InfectiousProfile = "empirical";
 MeanOfLognormal = getMeanOfLognormalDistribution();
 
 # Societal details
-WaitBeforeTestTaken  = ARGS[1];  # Number of days before test is taken
-WaitBeforeTestResult  = ARGS[2]; # Number of days before test result arrives after test is taken
+WaitBeforeTestTaken  = parse(Float64, ARGS[1]);  # Number of days before test is taken
+WaitBeforeTestResult  = parse(Float64, ARGS[2]); # Number of days before test result arrives after test is taken
 
 # Test-and-trace details
 ProbabilityChildIsTraced  = -0.02; #+34*0.02 // Fraction of children that are found through contact tracing
@@ -72,7 +72,7 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
         testsentivitylinspace = linspace
     end
 
-    for TestSensitivityValueNumber = 1:linspace
+    for TestSensitivityValueNumber = 1:testsentivitylinspace
         # Each time model is run for a new Tracing Efficiency Value, increase ProbabilityFalseNegativeTest
         global ProbabilityFalseNegativeTest += 0.02;
         # Print progress.
