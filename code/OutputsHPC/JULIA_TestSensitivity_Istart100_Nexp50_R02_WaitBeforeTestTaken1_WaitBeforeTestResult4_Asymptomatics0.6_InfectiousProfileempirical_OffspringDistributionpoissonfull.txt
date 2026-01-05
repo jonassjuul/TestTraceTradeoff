@@ -1,0 +1,2 @@
+
+False negative test rate,Tracing efficiency,N_infected_done,N_recovered,ReffMean,ReffStd,ReffTheoretical,N_traced
