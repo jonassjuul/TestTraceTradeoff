@@ -27,8 +27,8 @@ InfectiousProfile = "empirical";
 MeanOfLognormal = getMeanOfLognormalDistribution();
 
 # Societal details
-WaitBeforeTestTaken  = parse(Int64, ARGS[1]);  # Number of days before test is taken
-WaitBeforeTestResult  = parse(Int64, ARGS[2]); # Number of days before test result arrives after test is taken
+WaitBeforeTestTaken  = parse(Float64, ARGS[1]);  # Number of days before test is taken
+WaitBeforeTestResult  = parse(Float64, ARGS[2]); # Number of days before test result arrives after test is taken
 
 # Test-and-trace details
 ProbabilityChildIsTraced  = -0.02; #+34*0.02 // Fraction of children that are found through contact tracing
@@ -162,7 +162,7 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
            
         end
 
-        τ = WaitBeforeTestTaken + WaitBeforeTestResult
+        τ = Int(WaitBeforeTestTaken + WaitBeforeTestResult)
         I1untrace = 0.0
         I2untrace = 0.0
 
