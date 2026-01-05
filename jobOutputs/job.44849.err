@@ -1,0 +1,116 @@
+ERROR: LoadError: ArgumentError: invalid index: 4.0 of type Float64
+Stacktrace:
+  [1] to_index(i::Float64)
+    @ Base ./indices.jl:315
+  [2] to_index(A::Vector{Float64}, i::Float64)
+    @ Base ./indices.jl:292
+  [3] to_indices
+    @ ./indices.jl:368 [inlined]
+  [4] to_indices
+    @ ./indices.jl:360 [inlined]
+  [5] getindex
+    @ ./abstractarray.jl:1312 [inlined]
+  [6] macro expansion
+    @ ./multidimensional.jl:940 [inlined]
+  [7] macro expansion
+    @ ./cartesian.jl:64 [inlined]
+  [8] _unsafe_getindex!
+    @ ./multidimensional.jl:938 [inlined]
+  [9] _unsafe_getindex
+    @ ./multidimensional.jl:929 [inlined]
+ [10] _getindex
+    @ ./multidimensional.jl:915 [inlined]
+ [11] getindex(A::Vector{Float64}, I::StepRangeLen{Float64, Base.TwicePrecision{Float64}, Base.TwicePrecision{Float64}, Int64})
+    @ Base ./abstractarray.jl:1312
+ [12] macro expansion
+    @ ~/TestTraceTradeoff/code/mainhpc.jl:185 [inlined]
+ [13] top-level scope
+    @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc.jl:60
+ERROR: LoadError: ArgumentError: invalid index: 5.0 of type Float64
+Stacktrace:
+  [1] to_index(i::Float64)
+    @ Base ./indices.jl:315
+  [2] to_index(A::Vector{Float64}, i::Float64)
+    @ Base ./indices.jl:292
+  [3] to_indices
+    @ ./indices.jl:368 [inlined]
+  [4] to_indices
+    @ ./indices.jl:360 [inlined]
+  [5] getindex
+    @ ./abstractarray.jl:1312 [inlined]
+  [6] macro expansion
+    @ ./multidimensional.jl:940 [inlined]
+  [7] macro expansion
+    @ ./cartesian.jl:64 [inlined]
+  [8] _unsafe_getindex!
+    @ ./multidimensional.jl:938 [inlined]
+  [9] _unsafe_getindex
+    @ ./multidimensional.jl:929 [inlined]
+ [10] _getindex
+    @ ./multidimensional.jl:915 [inlined]
+ [11] getindex(A::Vector{Float64}, I::StepRangeLen{Float64, Base.TwicePrecision{Float64}, Base.TwicePrecision{Float64}, Int64})
+    @ Base ./abstractarray.jl:1312
+ [12] macro expansion
+    @ ~/TestTraceTradeoff/code/mainhpc.jl:185 [inlined]
+ [13] top-level scope
+    @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc.jl:60
+ERROR: LoadError: ArgumentError: invalid index: 6.0 of type Float64
+Stacktrace:
+  [1] to_index(i::Float64)
+    @ Base ./indices.jl:315
+  [2] to_index(A::Vector{Float64}, i::Float64)
+    @ Base ./indices.jl:292
+  [3] to_indices
+    @ ./indices.jl:368 [inlined]
+  [4] to_indices
+    @ ./indices.jl:360 [inlined]
+  [5] getindex
+    @ ./abstractarray.jl:1312 [inlined]
+  [6] macro expansion
+    @ ./multidimensional.jl:940 [inlined]
+  [7] macro expansion
+    @ ./cartesian.jl:64 [inlined]
+  [8] _unsafe_getindex!
+    @ ./multidimensional.jl:938 [inlined]
+  [9] _unsafe_getindex
+    @ ./multidimensional.jl:929 [inlined]
+ [10] _getindex
+    @ ./multidimensional.jl:915 [inlined]
+ [11] getindex(A::Vector{Float64}, I::StepRangeLen{Float64, Base.TwicePrecision{Float64}, Base.TwicePrecision{Float64}, Int64})
+    @ Base ./abstractarray.jl:1312
+ [12] macro expansion
+    @ ~/TestTraceTradeoff/code/mainhpc.jl:185 [inlined]
+ [13] top-level scope
+    @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc.jl:60
+ERROR: LoadError: ArgumentError: invalid index: 7.0 of type Float64
+Stacktrace:
+  [1] to_index(i::Float64)
+    @ Base ./indices.jl:315
+  [2] to_index(A::Vector{Float64}, i::Float64)
+    @ Base ./indices.jl:292
+  [3] to_indices
+    @ ./indices.jl:368 [inlined]
+  [4] to_indices
+    @ ./indices.jl:360 [inlined]
+  [5] getindex
+    @ ./abstractarray.jl:1312 [inlined]
+  [6] macro expansion
+    @ ./multidimensional.jl:940 [inlined]
+  [7] macro expansion
+    @ ./cartesian.jl:64 [inlined]
+  [8] _unsafe_getindex!
+    @ ./multidimensional.jl:938 [inlined]
+  [9] _unsafe_getindex
+    @ ./multidimensional.jl:929 [inlined]
+ [10] _getindex
+    @ ./multidimensional.jl:915 [inlined]
+ [11] getindex(A::Vector{Float64}, I::StepRangeLen{Float64, Base.TwicePrecision{Float64}, Base.TwicePrecision{Float64}, Int64})
+    @ Base ./abstractarray.jl:1312
+ [12] macro expansion
+    @ ~/TestTraceTradeoff/code/mainhpc.jl:185 [inlined]
+ [13] top-level scope
+    @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc.jl:60
