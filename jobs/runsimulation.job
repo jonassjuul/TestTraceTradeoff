@@ -5,7 +5,7 @@
 #SBATCH --error=/home/morah/TestTraceTradeoff/jobOutputs/job.%j.err 
 #SBATCH --cpus-per-task=1        # Schedule one core
 #SBATCH --nodelist=cn3
-#SBATCH --time=30:00:00     
+#SBATCH --time=24:00:00     
 #SBATCH --partition=scavenge    # Run on scavenge queue (all nodes, low priority)
 
 # Print out the hostname of the node the job is running on
