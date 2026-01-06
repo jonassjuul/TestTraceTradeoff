@@ -13,4 +13,8 @@
 module load Julia
 
 # Run the Julia script (Argument order: testwait, resultwait, Pasymp, R0)
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 0.0 0.0 0.6 2.0
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 0.0 0.3 3.0
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 1.0 0.3 3.0
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 2.0 0.3 3.0
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 3.0 0.3 3.0
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 4.0 0.3 3.0
