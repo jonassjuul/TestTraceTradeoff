@@ -4,7 +4,7 @@
 #SBATCH --output=/home/morah/TestTraceTradeoff/jobOutputs/job.%j.out 
 #SBATCH --error=/home/morah/TestTraceTradeoff/jobOutputs/job.%j.err 
 #SBATCH --cpus-per-task=1        # Schedule one core
-#SBATCH --nodelist=cn15
+#SBATCH --nodelist=cn4
 #SBATCH --time=24:00:00     
 #SBATCH --partition=scavenge    # Run on scavenge queue (all nodes, low priority)
 
@@ -13,4 +13,4 @@
 module load Julia
 
 # Run the Julia script (Argument order: testwait, resultwait, Pasymp, R0)
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 0.0 0.0 0.3 2.0
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 4.0 0.3 2.0
