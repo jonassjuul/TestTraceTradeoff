@@ -4,7 +4,7 @@
 #SBATCH --output=/home/morah/TestTraceTradeoff/jobOutputs/job.%j.out 
 #SBATCH --error=/home/morah/TestTraceTradeoff/jobOutputs/job.%j.err 
 #SBATCH --cpus-per-task=1        # Schedule one core
-#SBATCH --nodelist=cn13
+#SBATCH --nodelist=cn11
 #SBATCH --time=24:00:00     
 #SBATCH --partition=scavenge    # Run on scavenge queue (all nodes, low priority)
 
