@@ -1,0 +1,859 @@
+
+Currently simulating parameters:	False neg:	0.0	Trace efficiency:	0.0
+Theoretical Reff:	1.6334359576600828
+Empirical Reff:	1.6339852000000006
+
+Currently simulating parameters:	False neg:	0.02	Trace efficiency:	0.0
+Theoretical Reff:	1.6410460599712313
+Empirical Reff:	1.6428156000000005
+
+Currently simulating parameters:	False neg:	0.04	Trace efficiency:	0.0
+Theoretical Reff:	1.648297353191515
+Empirical Reff:	1.6486473999999998
+
+Currently simulating parameters:	False neg:	0.06	Trace efficiency:	0.0
+Theoretical Reff:	1.6554176202933855
+Empirical Reff:	1.6558758
+
+Currently simulating parameters:	False neg:	0.08	Trace efficiency:	0.0
+Theoretical Reff:	1.662894596088339
+Empirical Reff:	1.6635666
+
+Currently simulating parameters:	False neg:	0.1	Trace efficiency:	0.0
+Theoretical Reff:	1.6700060516624031
+Empirical Reff:	1.6706108
+
+Currently simulating parameters:	False neg:	0.12000000000000001	Trace efficiency:	0.0
+Theoretical Reff:	1.6776260694312504
+Empirical Reff:	1.6774195999999997
+
+Currently simulating parameters:	False neg:	0.14	Trace efficiency:	0.0
+Theoretical Reff:	1.6849122611157052
+Empirical Reff:	1.6859997999999998
+
+Currently simulating parameters:	False neg:	0.16	Trace efficiency:	0.0
+Theoretical Reff:	1.6917968068928082
+Empirical Reff:	1.69356
+
+Currently simulating parameters:	False neg:	0.18	Trace efficiency:	0.0
+Theoretical Reff:	1.6995296921364274
+Empirical Reff:	1.6995758
+
+Currently simulating parameters:	False neg:	0.19999999999999998	Trace efficiency:	0.0
+Theoretical Reff:	1.7069437736871969
+Empirical Reff:	1.7066888
+
+Currently simulating parameters:	False neg:	0.21999999999999997	Trace efficiency:	0.0
+Theoretical Reff:	1.713954763535384
+Empirical Reff:	1.7138784
+
+Currently simulating parameters:	False neg:	0.23999999999999996	Trace efficiency:	0.0
+Theoretical Reff:	1.7214379292801605
+Empirical Reff:	1.7217633999999995
+
+Currently simulating parameters:	False neg:	0.25999999999999995	Trace efficiency:	0.0
+Theoretical Reff:	1.7288230918514707
+Empirical Reff:	1.7284727999999998
+
+Currently simulating parameters:	False neg:	0.27999999999999997	Trace efficiency:	0.0
+Theoretical Reff:	1.7359848443370476
+Empirical Reff:	1.7350094000000005
+
+Currently simulating parameters:	False neg:	0.3	Trace efficiency:	0.0
+Theoretical Reff:	1.7433965821845108
+Empirical Reff:	1.7433106
+
+Currently simulating parameters:	False neg:	0.32	Trace efficiency:	0.0
+Theoretical Reff:	1.7507638281026718
+Empirical Reff:	1.7512587999999996
+
+Currently simulating parameters:	False neg:	0.34	Trace efficiency:	0.0
+Theoretical Reff:	1.7580122380298544
+Empirical Reff:	1.7584163999999998
+
+Currently simulating parameters:	False neg:	0.36000000000000004	Trace efficiency:	0.0
+Theoretical Reff:	1.76563416269572
+Empirical Reff:	1.7664414000000006
+
+Currently simulating parameters:	False neg:	0.38000000000000006	Trace efficiency:	0.0
+Theoretical Reff:	1.7728446635068678
+Empirical Reff:	1.7729272
+
+Currently simulating parameters:	False neg:	0.4000000000000001	Trace efficiency:	0.0
+Theoretical Reff:	1.7802192508067411
+Empirical Reff:	1.7809668000000005
+
+Currently simulating parameters:	False neg:	0.4200000000000001	Trace efficiency:	0.0
+Theoretical Reff:	1.7873221799120589
+Empirical Reff:	1.7883718000000002
+
+Currently simulating parameters:	False neg:	0.4400000000000001	Trace efficiency:	0.0
+Theoretical Reff:	1.7948171430151316
+Empirical Reff:	1.7956011999999995
+
+Currently simulating parameters:	False neg:	0.46000000000000013	Trace efficiency:	0.0
+Theoretical Reff:	1.8021156465475787
+Empirical Reff:	1.8017134000000001
+
+Currently simulating parameters:	False neg:	0.48000000000000015	Trace efficiency:	0.0
+Theoretical Reff:	1.8094991127931823
+Empirical Reff:	1.809486999999999
+
+Currently simulating parameters:	False neg:	0.5000000000000001	Trace efficiency:	0.0
+Theoretical Reff:	1.8168574304308909
+Empirical Reff:	1.8159286000000003
+
+Currently simulating parameters:	False neg:	0.5200000000000001	Trace efficiency:	0.0
+Theoretical Reff:	1.8241024728700477
+Empirical Reff:	1.8246278
+
+Currently simulating parameters:	False neg:	0.5400000000000001	Trace efficiency:	0.0
+Theoretical Reff:	1.831508279502009
+Empirical Reff:	1.8310364000000003
+
+Currently simulating parameters:	False neg:	0.5600000000000002	Trace efficiency:	0.0
+Theoretical Reff:	1.8387693148594253
+Empirical Reff:	1.8386812000000003
+
+Currently simulating parameters:	False neg:	0.5800000000000002	Trace efficiency:	0.0
+Theoretical Reff:	1.8460692825966794
+Empirical Reff:	1.8462242000000004
+
+Currently simulating parameters:	False neg:	0.6000000000000002	Trace efficiency:	0.0
+Theoretical Reff:	1.8534069466187437
+Empirical Reff:	1.8545294
+
+Currently simulating parameters:	False neg:	0.6200000000000002	Trace efficiency:	0.0
+Theoretical Reff:	1.8607920876498687
+Empirical Reff:	1.8599516000000005
+
+Currently simulating parameters:	False neg:	0.6400000000000002	Trace efficiency:	0.0
+Theoretical Reff:	1.8680860270041721
+Empirical Reff:	1.8681349999999997
+
+Currently simulating parameters:	False neg:	0.6600000000000003	Trace efficiency:	0.0
+Theoretical Reff:	1.8754939543915425
+Empirical Reff:	1.8752804
+
+Currently simulating parameters:	False neg:	0.6800000000000003	Trace efficiency:	0.0
+Theoretical Reff:	1.882712847375888
+Empirical Reff:	1.8829742000000003
+
+Currently simulating parameters:	False neg:	0.7000000000000003	Trace efficiency:	0.0
+Theoretical Reff:	1.8900603524326838
+Empirical Reff:	1.8907638
+
+Currently simulating parameters:	False neg:	0.7200000000000003	Trace efficiency:	0.0
+Theoretical Reff:	1.897480802510685
+Empirical Reff:	1.8982182
+
+Currently simulating parameters:	False neg:	0.7400000000000003	Trace efficiency:	0.0
+Theoretical Reff:	1.9048145372472298
+Empirical Reff:	1.9051543999999994
+
+Currently simulating parameters:	False neg:	0.7600000000000003	Trace efficiency:	0.0
+Theoretical Reff:	1.912115253165092
+Empirical Reff:	1.912106400000001
+
+Currently simulating parameters:	False neg:	0.7800000000000004	Trace efficiency:	0.0
+Theoretical Reff:	1.9193811219830206
+Empirical Reff:	1.9206321999999993
+
+Currently simulating parameters:	False neg:	0.8000000000000004	Trace efficiency:	0.0
+Theoretical Reff:	1.9267241869127172
+Empirical Reff:	1.9272909999999999
+
+Currently simulating parameters:	False neg:	0.8200000000000004	Trace efficiency:	0.0
+Theoretical Reff:	1.933971779286519
+Empirical Reff:	1.9347974000000008
+
+Currently simulating parameters:	False neg:	0.8400000000000004	Trace efficiency:	0.0
+Theoretical Reff:	1.9414109157621708
+Empirical Reff:	1.9398994000000005
+
+Currently simulating parameters:	False neg:	0.8600000000000004	Trace efficiency:	0.0
+Theoretical Reff:	1.9487331690123295
+Empirical Reff:	1.9479052
+
+Currently simulating parameters:	False neg:	0.8800000000000004	Trace efficiency:	0.0
+Theoretical Reff:	1.9560326267289276
+Empirical Reff:	1.9562198000000004
+
+Currently simulating parameters:	False neg:	0.9000000000000005	Trace efficiency:	0.0
+Theoretical Reff:	1.9633326352911382
+Empirical Reff:	1.9631902000000003
+
+Currently simulating parameters:	False neg:	0.9200000000000005	Trace efficiency:	0.0
+Theoretical Reff:	1.9707172030124158
+Empirical Reff:	1.969984
+
+Currently simulating parameters:	False neg:	0.9400000000000005	Trace efficiency:	0.0
+Theoretical Reff:	1.9780108562216263
+Empirical Reff:	1.9802204000000005
+
+Currently simulating parameters:	False neg:	0.9600000000000005	Trace efficiency:	0.0
+Theoretical Reff:	1.9853460227526007
+Empirical Reff:	1.984320199999999
+
+Currently simulating parameters:	False neg:	0.9800000000000005	Trace efficiency:	0.0
+Theoretical Reff:	1.9926671409108778
+Empirical Reff:	1.9927964
+
+Currently simulating parameters:	False neg:	1.0000000000000004	Trace efficiency:	0.0
+Theoretical Reff:	2.0
+Empirical Reff:	2.0000098000000004
+
+Currently simulating parameters:	False neg:	0.0	Trace efficiency:	0.02
+Theoretical Reff:	1.6239012481956723
+Empirical Reff:	1.6235396
+
+Currently simulating parameters:	False neg:	0.02	Trace efficiency:	0.02
+Theoretical Reff:	1.6313272109440808
+Empirical Reff:	1.6318860000000002
+
+Currently simulating parameters:	False neg:	0.04	Trace efficiency:	0.02
+Theoretical Reff:	1.6394400337948467
+Empirical Reff:	1.6382796
+
+Currently simulating parameters:	False neg:	0.06	Trace efficiency:	0.02
+Theoretical Reff:	1.646746479031496
+Empirical Reff:	1.6457148000000001
+
+Currently simulating parameters:	False neg:	0.08	Trace efficiency:	0.02
+Theoretical Reff:	1.6545045939554133
+Empirical Reff:	1.6554206
+
+Currently simulating parameters:	False neg:	0.1	Trace efficiency:	0.02
+Theoretical Reff:	1.6623164921107805
+Empirical Reff:	1.6607741999999999
+
+Currently simulating parameters:	False neg:	0.12000000000000001	Trace efficiency:	0.02
+Theoretical Reff:	1.6698497020283698
+Empirical Reff:	1.6707585999999999
+
+Currently simulating parameters:	False neg:	0.14	Trace efficiency:	0.02
+Theoretical Reff:	1.6777887839679713
+Empirical Reff:	1.6767090000000002
+
+Currently simulating parameters:	False neg:	0.16	Trace efficiency:	0.02
+Theoretical Reff:	1.685388209265147
+Empirical Reff:	1.6848848
+
+Currently simulating parameters:	False neg:	0.18	Trace efficiency:	0.02
+Theoretical Reff:	1.6929460147990396
+Empirical Reff:	1.6929216000000002
+
+Currently simulating parameters:	False neg:	0.19999999999999998	Trace efficiency:	0.02
+Theoretical Reff:	1.7005542927213537
+Empirical Reff:	1.7012514
+
+Currently simulating parameters:	False neg:	0.21999999999999997	Trace efficiency:	0.02
+Theoretical Reff:	1.7082116290751803
+Empirical Reff:	1.7067525999999997
+
+Currently simulating parameters:	False neg:	0.23999999999999996	Trace efficiency:	0.02
+Theoretical Reff:	1.7161941357918247
+Empirical Reff:	1.7139194000000004
+
+Currently simulating parameters:	False neg:	0.25999999999999995	Trace efficiency:	0.02
+Theoretical Reff:	1.7238038271151852
+Empirical Reff:	1.7229834000000006
+
+Currently simulating parameters:	False neg:	0.27999999999999997	Trace efficiency:	0.02
+Theoretical Reff:	1.7314487762410198
+Empirical Reff:	1.7295475999999999
+
+Currently simulating parameters:	False neg:	0.3	Trace efficiency:	0.02
+Theoretical Reff:	1.738864694769202
+Empirical Reff:	1.7382253999999997
+
+Currently simulating parameters:	False neg:	0.32	Trace efficiency:	0.02
+Theoretical Reff:	1.746568652109556
+Empirical Reff:	1.7458065999999994
+
+Currently simulating parameters:	False neg:	0.34	Trace efficiency:	0.02
+Theoretical Reff:	1.7542475692077797
+Empirical Reff:	1.7531278000000001
+
+Currently simulating parameters:	False neg:	0.36000000000000004	Trace efficiency:	0.02
+Theoretical Reff:	1.7616671596513775
+Empirical Reff:	1.7598664000000006
+
+Currently simulating parameters:	False neg:	0.38000000000000006	Trace efficiency:	0.02
+Theoretical Reff:	1.769047350429873
+Empirical Reff:	1.7683441999999996
+
+Currently simulating parameters:	False neg:	0.4000000000000001	Trace efficiency:	0.02
+Theoretical Reff:	1.7767970533304167
+Empirical Reff:	1.7761760000000002
+
+Currently simulating parameters:	False neg:	0.4200000000000001	Trace efficiency:	0.02
+Theoretical Reff:	1.7843801470311556
+Empirical Reff:	1.7836273999999996
+
+Currently simulating parameters:	False neg:	0.4400000000000001	Trace efficiency:	0.02
+Theoretical Reff:	1.7917474453898332
+Empirical Reff:	1.7921034
+
+Currently simulating parameters:	False neg:	0.46000000000000013	Trace efficiency:	0.02
+Theoretical Reff:	1.799494434144451
+Empirical Reff:	1.7983873999999997
+
+Currently simulating parameters:	False neg:	0.48000000000000015	Trace efficiency:	0.02
+Theoretical Reff:	1.8068943761261387
+Empirical Reff:	1.8068482000000003
+
+Currently simulating parameters:	False neg:	0.5000000000000001	Trace efficiency:	0.02
+Theoretical Reff:	1.8144904493971996
+Empirical Reff:	1.8131254000000003
+
+Currently simulating parameters:	False neg:	0.5200000000000001	Trace efficiency:	0.02
+Theoretical Reff:	1.821844763622217
+Empirical Reff:	1.8213396000000004
+
+Currently simulating parameters:	False neg:	0.5400000000000001	Trace efficiency:	0.02
+Theoretical Reff:	1.8295335271426747
+Empirical Reff:	1.8292412000000002
+
+Currently simulating parameters:	False neg:	0.5600000000000002	Trace efficiency:	0.02
+Theoretical Reff:	1.8368952345418166
+Empirical Reff:	1.8374767999999995
+
+Currently simulating parameters:	False neg:	0.5800000000000002	Trace efficiency:	0.02
+Theoretical Reff:	1.8444022886793712
+Empirical Reff:	1.8442440000000002
+
+Currently simulating parameters:	False neg:	0.6000000000000002	Trace efficiency:	0.02
+Theoretical Reff:	1.8519459743225648
+Empirical Reff:	1.8503436000000004
+
+Currently simulating parameters:	False neg:	0.6200000000000002	Trace efficiency:	0.02
+Theoretical Reff:	1.8594209855281487
+Empirical Reff:	1.8607543999999998
+
+Currently simulating parameters:	False neg:	0.6400000000000002	Trace efficiency:	0.02
+Theoretical Reff:	1.8668893990313202
+Empirical Reff:	1.8666191999999997
+
+Currently simulating parameters:	False neg:	0.6600000000000003	Trace efficiency:	0.02
+Theoretical Reff:	1.8743839843052215
+Empirical Reff:	1.8744593999999999
+
+Currently simulating parameters:	False neg:	0.6800000000000003	Trace efficiency:	0.02
+Theoretical Reff:	1.8819252296605558
+Empirical Reff:	1.8797805999999997
+
+Currently simulating parameters:	False neg:	0.7000000000000003	Trace efficiency:	0.02
+Theoretical Reff:	1.8893124112995663
+Empirical Reff:	1.8883096000000001
+
+Currently simulating parameters:	False neg:	0.7200000000000003	Trace efficiency:	0.02
+Theoretical Reff:	1.8966091346342755
+Empirical Reff:	1.8975186000000008
+
+Currently simulating parameters:	False neg:	0.7400000000000003	Trace efficiency:	0.02
+Theoretical Reff:	1.9040595833663385
+Empirical Reff:	1.9030808000000001
+
+Currently simulating parameters:	False neg:	0.7600000000000003	Trace efficiency:	0.02
+Theoretical Reff:	1.9115316159247187
+Empirical Reff:	1.9114138000000003
+
+Currently simulating parameters:	False neg:	0.7800000000000004	Trace efficiency:	0.02
+Theoretical Reff:	1.9189692353071275
+Empirical Reff:	1.92018
+
+Currently simulating parameters:	False neg:	0.8000000000000004	Trace efficiency:	0.02
+Theoretical Reff:	1.9262635672961892
+Empirical Reff:	1.9263919999999999
+
+Currently simulating parameters:	False neg:	0.8200000000000004	Trace efficiency:	0.02
+Theoretical Reff:	1.9337477229788866
+Empirical Reff:	1.9324019999999995
+
+Currently simulating parameters:	False neg:	0.8400000000000004	Trace efficiency:	0.02
+Theoretical Reff:	1.941102725832556
+Empirical Reff:	1.9409104000000006
+
+Currently simulating parameters:	False neg:	0.8600000000000004	Trace efficiency:	0.02
+Theoretical Reff:	1.9485695356642259
+Empirical Reff:	1.9474067999999998
+
+Currently simulating parameters:	False neg:	0.8800000000000004	Trace efficiency:	0.02
+Theoretical Reff:	1.9559246804344514
+Empirical Reff:	1.9550591999999998
+
+Currently simulating parameters:	False neg:	0.9000000000000005	Trace efficiency:	0.02
+Theoretical Reff:	1.9632725203186852
+Empirical Reff:	1.9627224
+
+Currently simulating parameters:	False neg:	0.9200000000000005	Trace efficiency:	0.02
+Theoretical Reff:	1.9706108467227164
+Empirical Reff:	1.9700735999999999
+
+Currently simulating parameters:	False neg:	0.9400000000000005	Trace efficiency:	0.02
+Theoretical Reff:	1.9779866197241696
+Empirical Reff:	1.9777480000000003
+
+Currently simulating parameters:	False neg:	0.9600000000000005	Trace efficiency:	0.02
+Theoretical Reff:	1.9853326942909078
+Empirical Reff:	1.9847981999999995
+
+Currently simulating parameters:	False neg:	0.9800000000000005	Trace efficiency:	0.02
+Theoretical Reff:	1.992669456510597
+Empirical Reff:	1.9924342000000002
+
+Currently simulating parameters:	False neg:	1.0000000000000004	Trace efficiency:	0.02
+Theoretical Reff:	2.0
+Empirical Reff:	1.9992142000000004
+
+Currently simulating parameters:	False neg:	0.0	Trace efficiency:	0.04
+Theoretical Reff:	1.6136770262864724
+Empirical Reff:	1.6128398000000006
+
+Currently simulating parameters:	False neg:	0.02	Trace efficiency:	0.04
+Theoretical Reff:	1.621996296502046
+Empirical Reff:	1.6200959999999998
+
+Currently simulating parameters:	False neg:	0.04	Trace efficiency:	0.04
+Theoretical Reff:	1.6300422554245044
+Empirical Reff:	1.6287531999999993
+
+Currently simulating parameters:	False neg:	0.06	Trace efficiency:	0.04
+Theoretical Reff:	1.6381587080676598
+Empirical Reff:	1.6358855999999995
+
+Currently simulating parameters:	False neg:	0.08	Trace efficiency:	0.04
+Theoretical Reff:	1.6464227189849043
+Empirical Reff:	1.6464866000000002
+
+Currently simulating parameters:	False neg:	0.1	Trace efficiency:	0.04
+Theoretical Reff:	1.6541855944536388
+Empirical Reff:	1.6528793999999996
+
+Currently simulating parameters:	False neg:	0.12000000000000001	Trace efficiency:	0.04
+Theoretical Reff:	1.6622626182727678
+Empirical Reff:	1.6607083999999994
+
+Currently simulating parameters:	False neg:	0.14	Trace efficiency:	0.04
+Theoretical Reff:	1.670438238501654
+Empirical Reff:	1.6703168000000006
+
+Currently simulating parameters:	False neg:	0.16	Trace efficiency:	0.04
+Theoretical Reff:	1.6785100457869253
+Empirical Reff:	1.6773983999999995
+
+Currently simulating parameters:	False neg:	0.18	Trace efficiency:	0.04
+Theoretical Reff:	1.686605645410541
+Empirical Reff:	1.6861886
+
+Currently simulating parameters:	False neg:	0.19999999999999998	Trace efficiency:	0.04
+Theoretical Reff:	1.6945327015685592
+Empirical Reff:	1.6918900000000001
+
+Currently simulating parameters:	False neg:	0.21999999999999997	Trace efficiency:	0.04
+Theoretical Reff:	1.7024444171073236
+Empirical Reff:	1.7020653999999995
+
+Currently simulating parameters:	False neg:	0.23999999999999996	Trace efficiency:	0.04
+Theoretical Reff:	1.7102169712535198
+Empirical Reff:	1.7085915999999997
+
+Currently simulating parameters:	False neg:	0.25999999999999995	Trace efficiency:	0.04
+Theoretical Reff:	1.718052129507813
+Empirical Reff:	1.7162615999999995
+
+Currently simulating parameters:	False neg:	0.27999999999999997	Trace efficiency:	0.04
+Theoretical Reff:	1.7261295605036286
+Empirical Reff:	1.7253893999999996
+
+Currently simulating parameters:	False neg:	0.3	Trace efficiency:	0.04
+Theoretical Reff:	1.7342375471515028
+Empirical Reff:	1.7324715999999996
+
+Currently simulating parameters:	False neg:	0.32	Trace efficiency:	0.04
+Theoretical Reff:	1.7419716455967384
+Empirical Reff:	1.7410110000000005
+
+Currently simulating parameters:	False neg:	0.34	Trace efficiency:	0.04
+Theoretical Reff:	1.7499325767524083
+Empirical Reff:	1.7482334000000004
+
+Currently simulating parameters:	False neg:	0.36000000000000004	Trace efficiency:	0.04
+Theoretical Reff:	1.7577327403900607
+Empirical Reff:	1.7570196000000002
+
+Currently simulating parameters:	False neg:	0.38000000000000006	Trace efficiency:	0.04
+Theoretical Reff:	1.7655487705790192
+Empirical Reff:	1.7646215999999995
+
+Currently simulating parameters:	False neg:	0.4000000000000001	Trace efficiency:	0.04
+Theoretical Reff:	1.7730995212031244
+Empirical Reff:	1.7718668000000002
+
+Currently simulating parameters:	False neg:	0.4200000000000001	Trace efficiency:	0.04
+Theoretical Reff:	1.7810009049066657
+Empirical Reff:	1.7801605999999999
+
+Currently simulating parameters:	False neg:	0.4400000000000001	Trace efficiency:	0.04
+Theoretical Reff:	1.788852692350388
+Empirical Reff:	1.7883649999999998
+
+Currently simulating parameters:	False neg:	0.46000000000000013	Trace efficiency:	0.04
+Theoretical Reff:	1.7967441722174697
+Empirical Reff:	1.7951534
+
+Currently simulating parameters:	False neg:	0.48000000000000015	Trace efficiency:	0.04
+Theoretical Reff:	1.8041652874526861
+Empirical Reff:	1.8025166000000001
+
+Currently simulating parameters:	False neg:	0.5000000000000001	Trace efficiency:	0.04
+Theoretical Reff:	1.81192174989147
+Empirical Reff:	1.8123157999999995
+
+Currently simulating parameters:	False neg:	0.5200000000000001	Trace efficiency:	0.04
+Theoretical Reff:	1.819815570941406
+Empirical Reff:	1.8191114000000008
+
+Currently simulating parameters:	False neg:	0.5400000000000001	Trace efficiency:	0.04
+Theoretical Reff:	1.8274206268433697
+Empirical Reff:	1.8263209999999994
+
+Currently simulating parameters:	False neg:	0.5600000000000002	Trace efficiency:	0.04
+Theoretical Reff:	1.8350584478167438
+Empirical Reff:	1.8348047999999988
+
+Currently simulating parameters:	False neg:	0.5800000000000002	Trace efficiency:	0.04
+Theoretical Reff:	1.8427536217678941
+Empirical Reff:	1.8436412000000002
+
+Currently simulating parameters:	False neg:	0.6000000000000002	Trace efficiency:	0.04
+Theoretical Reff:	1.8504906471022555
+Empirical Reff:	1.8503441999999994
+
+Currently simulating parameters:	False neg:	0.6200000000000002	Trace efficiency:	0.04
+Theoretical Reff:	1.8580599236735766
+Empirical Reff:	1.8585582
+
+Currently simulating parameters:	False neg:	0.6400000000000002	Trace efficiency:	0.04
+Theoretical Reff:	1.8656277616409622
+Empirical Reff:	1.8645246000000002
+
+Currently simulating parameters:	False neg:	0.6600000000000003	Trace efficiency:	0.04
+Theoretical Reff:	1.8732890512415603
+Empirical Reff:	1.8723417999999998
+
+Currently simulating parameters:	False neg:	0.6800000000000003	Trace efficiency:	0.04
+Theoretical Reff:	1.8808208051078341
+Empirical Reff:	1.8810309999999995
+
+Currently simulating parameters:	False neg:	0.7000000000000003	Trace efficiency:	0.04
+Theoretical Reff:	1.8884117500610185
+Empirical Reff:	1.8874408
+
+Currently simulating parameters:	False neg:	0.7200000000000003	Trace efficiency:	0.04
+Theoretical Reff:	1.8959257897817738
+Empirical Reff:	1.8956003999999993
+
+Currently simulating parameters:	False neg:	0.7400000000000003	Trace efficiency:	0.04
+Theoretical Reff:	1.9034990976768893
+Empirical Reff:	1.9031011999999998
+
+Currently simulating parameters:	False neg:	0.7600000000000003	Trace efficiency:	0.04
+Theoretical Reff:	1.9110029809541047
+Empirical Reff:	1.9098002000000005
+
+Currently simulating parameters:	False neg:	0.7800000000000004	Trace efficiency:	0.04
+Theoretical Reff:	1.9184365782069333
+Empirical Reff:	1.9180380000000001
+
+Currently simulating parameters:	False neg:	0.8000000000000004	Trace efficiency:	0.04
+Theoretical Reff:	1.9259739448192064
+Empirical Reff:	1.9272134000000003
+
+Currently simulating parameters:	False neg:	0.8200000000000004	Trace efficiency:	0.04
+Theoretical Reff:	1.9333905956198287
+Empirical Reff:	1.9336955999999998
+
+Currently simulating parameters:	False neg:	0.8400000000000004	Trace efficiency:	0.04
+Theoretical Reff:	1.9409000617783205
+Empirical Reff:	1.9401791999999998
+
+Currently simulating parameters:	False neg:	0.8600000000000004	Trace efficiency:	0.04
+Theoretical Reff:	1.9483345566685668
+Empirical Reff:	1.9477518000000003
+
+Currently simulating parameters:	False neg:	0.8800000000000004	Trace efficiency:	0.04
+Theoretical Reff:	1.955768161801008
+Empirical Reff:	1.957127
+
+Currently simulating parameters:	False neg:	0.9000000000000005	Trace efficiency:	0.04
+Theoretical Reff:	1.9631879654008757
+Empirical Reff:	1.9634644
+
+Currently simulating parameters:	False neg:	0.9200000000000005	Trace efficiency:	0.04
+Theoretical Reff:	1.9705840779171166
+Empirical Reff:	1.9720677999999996
+
+Currently simulating parameters:	False neg:	0.9400000000000005	Trace efficiency:	0.04
+Theoretical Reff:	1.9779545723408998
+Empirical Reff:	1.978588
+
+Currently simulating parameters:	False neg:	0.9600000000000005	Trace efficiency:	0.04
+Theoretical Reff:	1.985314743742411
+Empirical Reff:	1.9854904
+
+Currently simulating parameters:	False neg:	0.9800000000000005	Trace efficiency:	0.04
+Theoretical Reff:	1.9926635707484466
+Empirical Reff:	1.9933515999999998
+
+Currently simulating parameters:	False neg:	1.0000000000000004	Trace efficiency:	0.04
+Theoretical Reff:	2.0
+Empirical Reff:	1.9997648000000006
+
+Currently simulating parameters:	False neg:	0.0	Trace efficiency:	0.06
+Theoretical Reff:	1.60367447268019
+Empirical Reff:	1.6030354000000004
+
+Currently simulating parameters:	False neg:	0.02	Trace efficiency:	0.06
+Theoretical Reff:	1.6121359215246833
+Empirical Reff:	1.6116510000000002
+
+Currently simulating parameters:	False neg:	0.04	Trace efficiency:	0.06
+Theoretical Reff:	1.620746583321317
+Empirical Reff:	1.6195647999999998
+
+Currently simulating parameters:	False neg:	0.06	Trace efficiency:	0.06
+Theoretical Reff:	1.6293167126903465
+Empirical Reff:	1.6277362000000004
+
+Currently simulating parameters:	False neg:	0.08	Trace efficiency:	0.06
+Theoretical Reff:	1.6379033791967237
+Empirical Reff:	1.6367559999999992
+
+Currently simulating parameters:	False neg:	0.1	Trace efficiency:	0.06
+Theoretical Reff:	1.6461237822965378
+Empirical Reff:	1.6434660000000003
+
+Currently simulating parameters:	False neg:	0.12000000000000001	Trace efficiency:	0.06
+Theoretical Reff:	1.6546456737891966
+Empirical Reff:	1.6534876
+
+Currently simulating parameters:	False neg:	0.14	Trace efficiency:	0.06
+Theoretical Reff:	1.6629854136823174
+Empirical Reff:	1.6597952
+
+Currently simulating parameters:	False neg:	0.16	Trace efficiency:	0.06
+Theoretical Reff:	1.671406216196162
+Empirical Reff:	1.6700873999999997
+
+Currently simulating parameters:	False neg:	0.18	Trace efficiency:	0.06
+Theoretical Reff:	1.6795296674966584
+Empirical Reff:	1.6768608
+
+Currently simulating parameters:	False neg:	0.19999999999999998	Trace efficiency:	0.06
+Theoretical Reff:	1.6879362120962296
+Empirical Reff:	1.6868138000000001
+
+Currently simulating parameters:	False neg:	0.21999999999999997	Trace efficiency:	0.06
+Theoretical Reff:	1.6964407185174153
+Empirical Reff:	1.6936678
+
+Currently simulating parameters:	False neg:	0.23999999999999996	Trace efficiency:	0.06
+Theoretical Reff:	1.7045817689031657
+Empirical Reff:	1.7015287999999997
+
+Currently simulating parameters:	False neg:	0.25999999999999995	Trace efficiency:	0.06
+Theoretical Reff:	1.7129833894892013
+Empirical Reff:	1.7105357999999997
+
+Currently simulating parameters:	False neg:	0.27999999999999997	Trace efficiency:	0.06
+Theoretical Reff:	1.7208274224545377
+Empirical Reff:	1.7197594
+
+Currently simulating parameters:	False neg:	0.3	Trace efficiency:	0.06
+Theoretical Reff:	1.7294701428630952
+Empirical Reff:	1.7276528
+
+Currently simulating parameters:	False neg:	0.32	Trace efficiency:	0.06
+Theoretical Reff:	1.7372433992351577
+Empirical Reff:	1.7343484000000005
+
+Currently simulating parameters:	False neg:	0.34	Trace efficiency:	0.06
+Theoretical Reff:	1.7453407126606135
+Empirical Reff:	1.7441912
+
+Currently simulating parameters:	False neg:	0.36000000000000004	Trace efficiency:	0.06
+Theoretical Reff:	1.7534780791441356
+Empirical Reff:	1.7529207999999994
+
+Currently simulating parameters:	False neg:	0.38000000000000006	Trace efficiency:	0.06
+Theoretical Reff:	1.7616788288712797
+Empirical Reff:	1.7578200000000002
+
+Currently simulating parameters:	False neg:	0.4000000000000001	Trace efficiency:	0.06
+Theoretical Reff:	1.7697354297030503
+Empirical Reff:	1.7685652000000003
+
+Currently simulating parameters:	False neg:	0.4200000000000001	Trace efficiency:	0.06
+Theoretical Reff:	1.7778491673114718
+Empirical Reff:	1.776118
+
+Currently simulating parameters:	False neg:	0.4400000000000001	Trace efficiency:	0.06
+Theoretical Reff:	1.7856245103741117
+Empirical Reff:	1.7843231999999996
+
+Currently simulating parameters:	False neg:	0.46000000000000013	Trace efficiency:	0.06
+Theoretical Reff:	1.7937952206657861
+Empirical Reff:	1.7920584
+
+Currently simulating parameters:	False neg:	0.48000000000000015	Trace efficiency:	0.06
+Theoretical Reff:	1.8018354817462976
+Empirical Reff:	1.7988639999999996
+
+Currently simulating parameters:	False neg:	0.5000000000000001	Trace efficiency:	0.06
+Theoretical Reff:	1.8097146595897213
+Empirical Reff:	1.808537199999999
+
+Currently simulating parameters:	False neg:	0.5200000000000001	Trace efficiency:	0.06
+Theoretical Reff:	1.8176057556233307
+Empirical Reff:	1.8167478
+
+Currently simulating parameters:	False neg:	0.5400000000000001	Trace efficiency:	0.06
+Theoretical Reff:	1.8253883148629968
+Empirical Reff:	1.8244106000000002
+
+Currently simulating parameters:	False neg:	0.5600000000000002	Trace efficiency:	0.06
+Theoretical Reff:	1.8333677982298469
+Empirical Reff:	1.8320945999999996
+
+Currently simulating parameters:	False neg:	0.5800000000000002	Trace efficiency:	0.06
+Theoretical Reff:	1.841091895319106
+Empirical Reff:	1.8397142000000002
+
+Currently simulating parameters:	False neg:	0.6000000000000002	Trace efficiency:	0.06
+Theoretical Reff:	1.849014895467031
+Empirical Reff:	1.8478176000000002
+
+Currently simulating parameters:	False neg:	0.6200000000000002	Trace efficiency:	0.06
+Theoretical Reff:	1.8565599904293142
+Empirical Reff:	1.8569457999999996
+
+Currently simulating parameters:	False neg:	0.6400000000000002	Trace efficiency:	0.06
+Theoretical Reff:	1.8644727724785937
+Empirical Reff:	1.862814
+
+Currently simulating parameters:	False neg:	0.6600000000000003	Trace efficiency:	0.06
+Theoretical Reff:	1.8721589250188528
+Empirical Reff:	1.8718835999999999
+
+Currently simulating parameters:	False neg:	0.6800000000000003	Trace efficiency:	0.06
+Theoretical Reff:	1.8798701254420094
+Empirical Reff:	1.8791082000000001
+
+Currently simulating parameters:	False neg:	0.7000000000000003	Trace efficiency:	0.06
+Theoretical Reff:	1.887532428581911
+Empirical Reff:	1.8862294000000004
+
+Currently simulating parameters:	False neg:	0.7200000000000003	Trace efficiency:	0.06
+Theoretical Reff:	1.895132712001278
+Empirical Reff:	1.8959064000000005
+
+Currently simulating parameters:	False neg:	0.7400000000000003	Trace efficiency:	0.06
+Theoretical Reff:	1.9029217664307996
+Empirical Reff:	1.9021071999999999
+
+Currently simulating parameters:	False neg:	0.7600000000000003	Trace efficiency:	0.06
+Theoretical Reff:	1.9104291485210563
+Empirical Reff:	1.9092905999999998
+
+Currently simulating parameters:	False neg:	0.7800000000000004	Trace efficiency:	0.06
+Theoretical Reff:	1.9179568345920865
+Empirical Reff:	1.9179591999999999
+
+Currently simulating parameters:	False neg:	0.8000000000000004	Trace efficiency:	0.06
+Theoretical Reff:	1.9256165017469322
+Empirical Reff:	1.9259283999999994
+
+Currently simulating parameters:	False neg:	0.8200000000000004	Trace efficiency:	0.06
+Theoretical Reff:	1.9331439511418653
+Empirical Reff:	1.9321705999999994
+
+Currently simulating parameters:	False neg:	0.8400000000000004	Trace efficiency:	0.06
+Theoretical Reff:	1.940647134989305
+Empirical Reff:	1.9423338
+
+Currently simulating parameters:	False neg:	0.8600000000000004	Trace efficiency:	0.06
+Theoretical Reff:	1.948150251169152
+Empirical Reff:	1.9474782
+
+Currently simulating parameters:	False neg:	0.8800000000000004	Trace efficiency:	0.06
+Theoretical Reff:	1.9556317601642579
+Empirical Reff:	1.9566358000000001
+
+Currently simulating parameters:	False neg:	0.9000000000000005	Trace efficiency:	0.06
+Theoretical Reff:	1.9630803240606165
+Empirical Reff:	1.9637412000000005
+
+Currently simulating parameters:	False neg:	0.9200000000000005	Trace efficiency:	0.06
+Theoretical Reff:	1.97053214358352
+Empirical Reff:	1.9700093999999995
+
+Currently simulating parameters:	False neg:	0.9400000000000005	Trace efficiency:	0.06
+Theoretical Reff:	1.9779193685127168
+Empirical Reff:	1.9780035999999999
+
+Currently simulating parameters:	False neg:	0.9600000000000005	Trace efficiency:	0.06
+Theoretical Reff:	1.985302305907056
+Empirical Reff:	1.9854018
+
+Currently simulating parameters:	False neg:	0.9800000000000005	Trace efficiency:	0.06
+Theoretical Reff:	1.9926638101755016
+Empirical Reff:	1.9914878000000003
+
+Currently simulating parameters:	False neg:	1.0000000000000004	Trace efficiency:	0.06
+Theoretical Reff:	2.0
+Empirical Reff:	2.0005429999999995
+
+Currently simulating parameters:	False neg:	0.0	Trace efficiency:	0.08
+Theoretical Reff:	1.593083512093826
+Empirical Reff:	1.5918501999999999
+
+Currently simulating parameters:	False neg:	0.02	Trace efficiency:	0.08
+Theoretical Reff:	1.6024321078606978
+Empirical Reff:	1.6018496
+
+Currently simulating parameters:	False neg:	0.04	Trace efficiency:	0.08
+Theoretical Reff:	1.6112086925030296
+Empirical Reff:	1.610591
+
+Currently simulating parameters:	False neg:	0.06	Trace efficiency:	0.08
+Theoretical Reff:	1.6202735363191973
+Empirical Reff:	1.6184235999999996
+
+Currently simulating parameters:	False neg:	0.08	Trace efficiency:	0.08
+Theoretical Reff:	1.6288598761703605
+Empirical Reff:	1.6282358000000006
+
+Currently simulating parameters:	False neg:	0.1	Trace efficiency:	0.08
+Theoretical Reff:	1.6377074487651475
+Empirical Reff:	1.6352364000000006
+
+Currently simulating parameters:	False neg:	0.12000000000000001	Trace efficiency:	0.08
+Theoretical Reff:	1.6468404518709086
+Empirical Reff:	1.6447585999999996
+
+Currently simulating parameters:	False neg:	0.14	Trace efficiency:	0.08
+Theoretical Reff:	1.6557033375672559
+Empirical Reff:	1.6533791999999996
+
+Currently simulating parameters:	False neg:	0.16	Trace efficiency:	0.08
+Theoretical Reff:	1.6643215667746698
+Empirical Reff:	1.6627102
+
+Currently simulating parameters:	False neg:	0.18	Trace efficiency:	0.08
+Theoretical Reff:	1.6728669062018497
+Empirical Reff:	1.6695210000000003
+
+Currently simulating parameters:	False neg:	0.19999999999999998	Trace efficiency:	0.08
+Theoretical Reff:	1.6819186160212165
