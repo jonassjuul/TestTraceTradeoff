@@ -22,8 +22,8 @@ R0 = parse(Float64, ARGS[4]); #3//2.5 # Mean number of children in full period o
 OffspringDistribution = "poisson";
 # OffspringDistribution = "geometric";
 
-InfectiousProfile = "empirical";
-#InfectiousProfile = "FlatSkewed";
+# InfectiousProfile = "empirical";
+InfectiousProfile = "FlatSkewed";
 MeanOfLognormal = getMeanOfLognormalDistribution();
 
 # Societal details
@@ -31,7 +31,7 @@ WaitBeforeTestTaken  = parse(Float64, ARGS[1]);  # Number of days before test is
 WaitBeforeTestResult  = parse(Float64, ARGS[2]); # Number of days before test result arrives after test is taken
 
 # Test-and-trace details
-ProbabilityChildIsTraced  = 0.5000000000000001; #+34*0.02 // Fraction of children that are found through contact tracing
+ProbabilityChildIsTraced  = -0.02; #+34*0.02 // Fraction of children that are found through contact tracing
 ProbabilityFalseNegativeTest = -0.02;
 linspace = 51;
 #--------------------
@@ -39,7 +39,7 @@ linspace = 51;
 DirectoryToSaveResults = "code/OutputsHPC/";
 
 # Define Filename where results will be saved
-FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfInfected,"_Nexp",NumberOfExperiments,"_R0",R0,"_WaitBeforeTestTaken",WaitBeforeTestTaken,"_WaitBeforeTestResult",WaitBeforeTestResult, "_Asymptomatics",AsymptomaticFractionOfInfected,"_InfectiousProfile",InfectiousProfile,"_OffspringDistribution", OffspringDistribution,"full_part2.txt");
+FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfInfected,"_Nexp",NumberOfExperiments,"_R0",R0,"_WaitBeforeTestTaken",WaitBeforeTestTaken,"_WaitBeforeTestResult",WaitBeforeTestResult, "_Asymptomatics",AsymptomaticFractionOfInfected,"_InfectiousProfile",InfectiousProfile,"_OffspringDistribution", OffspringDistribution,".txt");
 
 # First list in filename where results will be saved specifies columns
 FirstLineInFile = string("False negative test rate,","Tracing efficiency,","N_infected_done,","N_recovered,","ReffMean,","ReffStd,","ReffTheoretical,","N_traced");
@@ -57,7 +57,7 @@ AppendLineToFile(string(DirectoryToSaveResults,FilenameToSaveResults),FirstLineI
 #   1. Contact tracing efficiency (probability that a child is traced when parent gets tested positive.)
 #   2. Test sensitivity
 
-elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:26
+elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
     # Each time model is run for a new Tracing Efficiency Value, increase ProbabilityChildIsTraced
     global ProbabilityChildIsTraced += 0.02;
     global WaitBeforeTestTaken = WaitBeforeTestTaken;
