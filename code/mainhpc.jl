@@ -19,11 +19,14 @@ NumberOfExperiments  = 50; # Number of experiments
 AsymptomaticFractionOfInfected = parse(Float64, ARGS[3]);# Fraction of infected that never get symptoms. 
 
 R0 = parse(Float64, ARGS[4]); #3//2.5 # Mean number of children in full period of infection.
-OffspringDistribution = "poisson";
+
+OffspringDistribution = ARGS[5];
+# OffspringDistribution = "poisson";
 # OffspringDistribution = "geometric";
 
+InfectiousProfile = ARGS[6];
 # InfectiousProfile = "empirical";
-InfectiousProfile = "FlatSkewed";
+# InfectiousProfile = "FlatSkewed";
 MeanOfLognormal = getMeanOfLognormalDistribution();
 
 # Societal details
