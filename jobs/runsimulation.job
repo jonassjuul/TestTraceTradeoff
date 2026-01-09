@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=R0_10       # Job name
+#SBATCH --job-name=Asymp0.6       # Job name
 #SBATCH --output=/home/morah/TestTraceTradeoff/jobOutputs/job.%j.out 
 #SBATCH --error=/home/morah/TestTraceTradeoff/jobOutputs/job.%j.err 
 #SBATCH --cpus-per-task=1        # Schedule one core
@@ -12,8 +12,8 @@
 module load Julia
 
 # Run the Julia script (Argument order: testwait, resultwait, Pasymp, R0, OffspringDistribution, InfectiousProfile)
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 5.0 0.3 10.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 6.0 0.3 10.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 7.0 0.3 10.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 8.0 0.3 10.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 9.0 0.3 10.0 "poisson" "empirical"
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 5.0 0.6 2.0 "poisson" "empirical"
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 6.0 0.6 2.0 "poisson" "empirical"
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 7.0 0.6 2.0 "poisson" "empirical"
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 8.0 0.6 2.0 "poisson" "empirical"
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 9.0 0.6 2.0 "poisson" "empirical"
