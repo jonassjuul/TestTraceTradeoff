@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=wait5        # Job name
+#SBATCH --job-name=geometric        # Job name
 #SBATCH --output=/home/morah/TestTraceTradeoff/jobOutputs/job.%j.out 
 #SBATCH --error=/home/morah/TestTraceTradeoff/jobOutputs/job.%j.err 
 #SBATCH --cpus-per-task=1        # Schedule one core
