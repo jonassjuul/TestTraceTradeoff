@@ -4,7 +4,6 @@
 #SBATCH --output=/home/morah/TestTraceTradeoff/jobOutputs/job.%j.out 
 #SBATCH --error=/home/morah/TestTraceTradeoff/jobOutputs/job.%j.err 
 #SBATCH --cpus-per-task=1        # Schedule one core
-#SBATCH --nodelist=cn9
 #SBATCH --time=24:00:00     
 #SBATCH --partition=scavenge    # Run on scavenge queue (all nodes, low priority)
 
@@ -13,8 +12,8 @@
 module load Julia
 
 # Run the Julia script (Argument order: testwait, resultwait, Pasymp, R0, OffspringDistribution, InfectiousProfile)
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 5.0 0.3 2.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 6.0 0.3 2.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 7.0 0.3 2.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 8.0 0.3 2.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 9.0 0.3 2.0 "poisson" "empirical"
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 5.0 0.3 2.0 "geometric" "empirical"
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 6.0 0.3 2.0 "geometric" "empirical"
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 7.0 0.3 2.0 "geometric" "empirical"
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 8.0 0.3 2.0 "geometric" "empirical"
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 9.0 0.3 2.0 "geometric" "empirical"
