@@ -20,8 +20,9 @@ NumberOfExperiments  = 50; # Number of experiments
 AsymptomaticFractionOfInfected = 0.3;# Fraction of infected that never get symptoms. 
 
 R0 = 2.0; #3//2.5 # Mean number of children in full period of infection.
-OffspringDistribution = "poisson";
+# OffspringDistribution = "poisson";
 # OffspringDistribution = "geometric";
+OffspringDistribution = "negativebinomial";
 
 InfectiousProfile = "empirical";
 #InfectiousProfile = "FlatSkewed";

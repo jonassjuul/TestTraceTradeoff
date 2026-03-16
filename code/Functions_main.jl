@@ -240,6 +240,12 @@ function drawNumberOfChildren(R0OfNode,OffspringDistribution)
 
     elseif (OffspringDistribution=="geometric")
         NumberOfChildren = drawGeometricInteger(R0OfNode)
+    
+    elseif (OffspringDistribution=="negativebinomial")
+        NumberOfChildren = drawNegativeBinomialInteger(R0OfNode)
+    
+    else
+        print("USING OFFSPRING DISTRIBUTION THAT WAS NOT IMPLEMENTED")
 
     end
     return NumberOfChildren
@@ -666,8 +672,8 @@ function TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChild
 end
 
 #test negatibe binomial distribution
-using Distributions
-using Plots
+#using Distributions
+#using Plots
 
-samples = [drawNegativeBinomialInteger(2) for _ in 1:5000]
-histogram(samples, bins=0:maximum(samples), xlabel="Value", ylabel="Frequency", title="Negative Binomial Samples (R₀=2)", normalize=true, ylim=(0, 1), xlim=(0, 20))
+#samples = [drawNegativeBinomialInteger(2) for _ in 1:5000]
+#histogram(samples, bins=0:maximum(samples), xlabel="Value", ylabel="Frequency", title="Negative Binomial Samples (R₀=2)", normalize=true, ylim=(0, 1), xlim=(0, 20))
