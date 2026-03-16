@@ -14,4 +14,8 @@ module load Julia
 julia -e 'using Pkg; Pkg.add("Distributions")'
 
 # Run the Julia script (Argument order: testwait, resultwait, Pasymp, R0, OffspringDistribution, InfectiousProfile)
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 0.0 0.0 0.3 2.0 "negativebinomial" "empirical"
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 5.0 0.3 2.0 "negativebinomial" "empirical"
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 6.0 0.3 2.0 "negativebinomial" "empirical"
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 7.0 0.3 2.0 "negativebinomial" "empirical"
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 8.0 0.3 2.0 "negativebinomial" "empirical"
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 9.0 0.3 2.0 "negativebinomial" "empirical"
