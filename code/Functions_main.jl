@@ -273,6 +273,40 @@ function drawPoissonInteger(R0OfNode)
     return DrawnInteger
 end
 
+function drawNegativeBinomialInteger(R0OfNode)
+
+    # Return an integer drawn from a Negative binomial distribution with mean R0OfNode
+    # Inputs 
+    # --------
+    # R0OfNode:     Float. Mean of Negative binomial distribution
+
+    # Outputs
+    # --------
+    # DrawnInteger  Integer. Drawn from Negative binomial distribution
+    k = 0.1  # dispersion
+    p = k / (k + R0OfNode)  # success probability
+    r = k  
+    d = NegativeBinomial(r, p)
+
+    RandomFloat = rand()+0;
+    DrawnInteger = -1;
+
+    CumulativeNegativeBinomialDistribution =0 ;
+    DrawnIntegerFound = false;
+    while DrawnIntegerFound==false
+        DrawnInteger += 1;
+
+        CumulativeNegativeBinomialDistribution += pdf(d, DrawnInteger)
+
+        if CumulativeNegativeBinomialDistribution >= RandomFloat
+            DrawnIntegerFound = true
+            break
+        end
+    end
+    return DrawnInteger
+end
+
+
 function drawTimesWhenInfectedWillInfectOthers(NumberOfChildrenToDraw,CounterGoalOfNode,InfectiousProfile)
     # Creates an array containing at what times an infectious node will infect others.
     # Inputs:
@@ -428,6 +462,28 @@ function getMeanOfLognormalDistribution()
 		MeanOfLognormalDistribution += (Day) * LognormalDistribution[Day];
     end
 	return MeanOfLognormalDistribution
+end
+
+function getVarianceOfLognormalDistribution()
+	# Calculate variance using Var(X) = E[X²] - (E[X])²
+	LognormalDistribution = getLognormalDistribution();
+	
+	# Calculate E[X] (mean)
+	Mean = 0;
+	for Day = 1:length(LognormalDistribution)
+		Mean += (Day) * LognormalDistribution[Day];
+	end
+	
+	# Calculate E[X²] (second moment)
+	SecondMoment = 0;
+	for Day = 1:length(LognormalDistribution)
+		SecondMoment += (Day^2) * LognormalDistribution[Day];
+	end
+	
+	# Calculate variance
+	Variance = SecondMoment - Mean^2;
+	
+	return Variance
 end
 
 function InfectNodesOnThisTimestep(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,MaximumAllowedInfected,NumberOfInfected,R0,MeanOfLognormal,OffspringDistribution,InfectiousProfile)
@@ -608,3 +664,10 @@ function TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChild
     end
     return StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren, tracedNodes, GoalOfCountDown_traced, timetraced_traced, GoalOfCountDown_untraced
 end
+
+#test negatibe binomial distribution
+using Distributions
+using Plots
+
+samples = [drawNegativeBinomialInteger(2) for _ in 1:5000]
+histogram(samples, bins=0:maximum(samples), xlabel="Value", ylabel="Frequency", title="Negative Binomial Samples (R₀=2)", normalize=true, ylim=(0, 1), xlim=(0, 20))

@@ -2,7 +2,7 @@
 using DelimitedFiles
 using Statistics
 # Include my functions.....
-include("Functions_main_messy.jl")
+include("Functions_main_messy.jl");
 
 
 # Definitions
@@ -31,7 +31,7 @@ WaitBeforeTestTaken  = 0;  # Number of days before test is taken
 WaitBeforeTestResult  = 0; # Number of days before test result arrives after test is taken
 
 # Test-and-trace details
-ProbabilityChildIsTraced  = 0.78; #+34*0.02 // Fraction of children that are found through contact tracing
+ProbabilityChildIsTraced  = -0.02; #+34*0.02 // Fraction of children that are found through contact tracing
 ProbabilityFalseNegativeTest = -0.02;
 linspace = 51;
 empiricalMean = zeros(linspace, linspace);
@@ -58,7 +58,7 @@ AppendLineToFile(string(DirectoryToSaveResults,FilenameToSaveResults),FirstLineI
 #   1. Contact tracing efficiency (probability that a child is traced when parent gets tested positive.)
 #   2. Test sensitivity
 
-elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:21
+elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
     # Each time model is run for a new Tracing Efficiency Value, increase ProbabilityChildIsTraced
     global ProbabilityChildIsTraced += 0.02;
     global WaitBeforeTestTaken = WaitBeforeTestTaken;
@@ -443,18 +443,140 @@ for i in 1:numSamples
 
 end
 
+# Save samples to a file that can be loaded as a list in Python
+writedlm(string(DirectoryToSaveResults, "samples_normalized_infection_times.txt"), samples)
+
 using Plots
 histogram(samples, bins=20, xlabel="Normalized Infection Time", ylabel="Frequency", title="Histogram of Normalized Infection Times", alpha=0.7, normalize=:pdf)
 scatter!(0:0.05:1, getInfectiousnessDistribution(20,"empirical"), 
          label="Infectiousness Distribution", alpha=0.5, 
          legend=:topright)
 
-p_false = 0.1 #round(rand(), digits=2)
-GoalOfCountDown_individual = 8 #2*drawLognormallyDistributedInteger();
+p_false = p_false = 1-0.763 #round(rand(), digits=2)
+GoalOfCountDown_individual = 10 # 2*drawLognormallyDistributedInteger();
+threshold = 1
 
-weighted_p_test = getFalseNegativeProbabilityDistribution(p_false, getInfectiousnessDistribution(GoalOfCountDown_individual,"empirical"), GoalOfCountDown_individual)
-print("mean is " ,mean(weighted_p_test))   
+weighted_p_test = getTestSensitivityDistribution(p_false, getInfectiousnessDistribution(GoalOfCountDown_individual,"empirical"), GoalOfCountDown_individual, threshold)
+print("mean is " ,mean(weighted_p_test))
 plot((1-p_false).*getInfectiousnessDistribution(GoalOfCountDown_individual,"empirical")*GoalOfCountDown_individual, xlabel="Weighted False Negative Probability", alpha=0.7, label = "Weighted test sensitivity profile", title = "p_false=$(p_false)  ")
 plot!(weighted_p_test, xlabel="Adjusted Weighted test sensitivity Probability", alpha=0.7, label = "adjusted Weighted test sensitivity profile")
 plot!(getInfectiousnessDistribution(GoalOfCountDown_individual,"empirical"), xlabel="infectious profile", alpha=0.7, label ="Infectious profile")
 
+
+#Create avereage p_test curve by p_avgtest(day) = sum p(days)*p_test(day given days)
+
+lognormal = getLognormalDistribution()
+avg_ptest = zeros(59)
+threshold = 1
+x = 2:2:118
+
+# Initialize the plot
+p = plot(xlabel="Day", ylabel="Average Test Sensitivity", title="Average Test Sensitivity Over Time", legend=:topright)
+
+for i in 0:9
+    p_false = i*0.1
+    avg_ptest = zeros(59)
+    for days in 1:59
+        weighted_p_test = getTestSensitivityDistribution(p_false, getInfectiousnessDistribution(days,"empirical"), days, threshold)
+        avg_ptest[1:days] .+= weighted_p_test * lognormal[days]
+        # avg_ptest[1:days] .+= weighted_p_test * lognormal[days] / sum(lognormal[1:days])
+    end
+    print(sum(avg_ptest), "\n")
+    plot!(p, x[1:20], avg_ptest[1:20], label = "p_test=$(round(1-p_false, digits=2))", linewidth=2)
+end
+
+# Display the plot
+display(p)
+
+p1 = plot(xlabel="Day", ylabel="Average Test Sensitivity", title="Average Test Sensitivity Over Time", legend=false)
+
+p_false = 1-0.763
+avg_ptest = zeros(59)
+for days in 1:59
+    weighted_p_test = getTestSensitivityDistribution(p_false, getInfectiousnessDistribution(days,"empirical"), days, threshold)
+    avg_ptest[1:days] .+= weighted_p_test * lognormal[days]
+    # avg_ptest[1:days] .+= weighted_p_test * lognormal[days] / sum(lognormal[1:days])
+end
+print(sum(avg_ptest), "\n")
+plot!(p1, x[1:20], avg_ptest[1:20], label = "p_test=$(round(1-p_false, digits=2))", linewidth=2)
+
+display(p1)
+#### Normalise the infectious period length
+
+p1 = plot(xlabel="normalised infectious period", ylabel="Average Test Sensitivity", title="Average Test Sensitivity Over Time", legend=false)
+treshold = 1
+p_false = 1-0.763
+for days in 1:30
+#days = 10
+    weighted_p_test = getTestSensitivityDistribution(p_false, getInfectiousnessDistribution(2*days,"empirical"), 2*days, threshold)
+    x_grid = 0:1/(2*days-1):1
+    plot!(p1, x_grid, weighted_p_test, label = "length of infectious period = $(days)")
+    # avg_ptest[1:days] .+= weighted_p_test * lognormal[days] / sum(lognormal[1:days])
+end
+
+display(p1)
+
+
+
+using Interpolations
+
+p1 = plot(xlabel="normalised infectious period", ylabel="Average Test Sensitivity", title="Average Test Sensitivity Over Time", legend=false)
+threshold = 1
+p_false = 1-0.763
+
+# Define common interpolation grid
+common_x_grid = 0.0:0.02:1.0
+weighted_avg_p_test = zeros(length(common_x_grid))
+
+# Get lognormal distribution for weighting
+lognormal = getLognormalDistribution()
+samples = fill(Float64[], length(lognormal),1)
+for days in 1:length(lognormal)
+    # Get the weighted test sensitivity for this infectious period length
+    weighted_p_test = getTestSensitivityDistribution(p_false, getInfectiousnessDistribution(2*days,"empirical"), 2*days, threshold)
+    samples[days] = weighted_p_test
+    # Create x_grid for this specific days value
+    x_grid = collect(0:1/(2*days-1):1)  # Convert to vector for interpolation
+    
+    # Create interpolation function (linear interpolation)
+    if length(x_grid) == length(weighted_p_test)
+        interp = linear_interpolation(x_grid, weighted_p_test, extrapolation_bc=Line())
+        
+        # Interpolate to common grid
+        interpolated_values = [interp(x) for x in common_x_grid]
+        
+        # Add weighted contribution to the average
+        # Weight by the lognormal probability for this infectious period length
+        if days <= length(lognormal)
+            weight = lognormal[days]
+            weighted_avg_p_test .+= interpolated_values .* weight
+        end
+        
+        # Plot individual curves (optional - comment out if too many lines)
+        if days <= 10  # Only plot first 10 for clarity
+            plot!(p1, x_grid, weighted_p_test, alpha=0.3, label = "length = $(2*days) days")
+        end
+    end
+end
+
+writedlm(string(DirectoryToSaveResults, "samples_normalized_infection_times.txt"), samples)
+
+
+
+
+# Plot the weighted average
+plot!(p1, common_x_grid, weighted_avg_p_test, linewidth=3, color=:red, 
+      label="Weighted Average", legend=:bottom)
+
+display(p1)
+
+
+
+# Also create a separate plot showing just the weighted average
+p2 = plot(common_x_grid, weighted_avg_p_test, linewidth=3, color=:red,
+          xlabel="Normalised infectious period", 
+          ylabel="Weighted Average Test Sensitivity",
+          title="Lognormal-Weighted Average Test Sensitivity",
+          marker=:circle, markersize=4)
+
+display(p2)

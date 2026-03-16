@@ -410,7 +410,7 @@ function getInitialConditionsOfSimulation(StateOfNodes,CountUpToStateChange,Goal
         NumberOfChildrenThisNodeInfects = drawNumberOfChildren(R0OfNode,OffspringDistribution);
         WhenInfectedWillInfectOthers[SeedNumber] = drawTimesWhenInfectedWillInfectOthers(NumberOfChildrenThisNodeInfects, GoalOfCountDown[SeedNumber], InfectiousProfile);
 
-        pTestDistribution[SeedNumber] = getFalseNegativeProbabilityDistribution(ProbabilityFalseNegativeTest, getInfectiousnessDistribution(GoalOfCountDown[SeedNumber],InfectiousProfile), GoalOfCountDown[SeedNumber]); # Initial infected have 50% chance to get tested.
+        pTestDistribution[SeedNumber] = getTestSensitivityDistribution(ProbabilityFalseNegativeTest, getInfectiousnessDistribution(GoalOfCountDown[SeedNumber],InfectiousProfile), GoalOfCountDown[SeedNumber]); # Initial infected have 50% chance to get tested.
 
     end
 
@@ -522,7 +522,7 @@ function makeNodeInfectious(StateOfNodes_individual,CountUpToStateChange_individ
     R0OfNode = R0 * GoalOfCountDown_individual / (2*MeanOfLognormal); 
     NumberOfChildrenToDraw = drawNumberOfChildren(R0OfNode,OffspringDistribution);
     WhenInfectedWillInfectOthers_individual = drawTimesWhenInfectedWillInfectOthers(NumberOfChildrenToDraw, GoalOfCountDown_individual, InfectiousProfile);
-    pTestDistribution_individual = getFalseNegativeProbabilityDistribution(ProbabilityFalseNegativeTest, getInfectiousnessDistribution(GoalOfCountDown_individual,InfectiousProfile), GoalOfCountDown_individual);
+    pTestDistribution_individual = getTestSensitivityDistribution(ProbabilityFalseNegativeTest, getInfectiousnessDistribution(GoalOfCountDown_individual,InfectiousProfile), GoalOfCountDown_individual);
 
     return StateOfNodes_individual,CountUpToStateChange_individual,GoalOfCountDown_individual,WhenInfectedWillInfectOthers_individual, pTestDistribution_individual
 
@@ -616,17 +616,17 @@ function TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChild
     return StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren, sumInfectiontimeGivenTracing, tracedNodes, GoalOfCountDown_traced, timetraced_traced, nonvalidtracings, GoalOfCountDown_untraced
 end
 
-function getFalseNegativeProbabilityDistribution(p_false, infectiousness, GoalOfCountDown_individual)
+function getTestSensitivityDistribution(p_false, infectiousness, GoalOfCountDown_individual, treshold=0.9)
     p_test = 1.0 - p_false
     weighted_p_test = (p_test).*infectiousness*GoalOfCountDown_individual
-    while sum(weighted_p_test .> 1) != 0
+    while sum(weighted_p_test .> treshold) != 0
         for i = 1:Int(GoalOfCountDown_individual)
-            numberabove1 = sum(weighted_p_test .>= 1)
+            numberabove1 = sum(weighted_p_test .>= treshold)
             if weighted_p_test[i] >= 1
-                delta = (weighted_p_test[i] - 1.0)
+                delta = (weighted_p_test[i] - treshold)
                 weighted_p_test[i] -= delta
                 for j = 1:Int(GoalOfCountDown_individual)
-                    if weighted_p_test[j] < 1
+                    if weighted_p_test[j] < treshold
                         weighted_p_test[j] += delta/(GoalOfCountDown_individual-numberabove1)
                     end
                 end

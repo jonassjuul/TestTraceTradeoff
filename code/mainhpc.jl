@@ -1,6 +1,7 @@
 
 using DelimitedFiles
 using Statistics
+using Distributions
 # Include my functions.....
 include("Functions_main.jl")
 

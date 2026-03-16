@@ -269,6 +269,7 @@ def make_fig2(X,Y,Z,delays,interpolate = False,figname=None,heatmap='bwr',R_cont
     ylim = ax0.get_ylim()
 
     breakingPoint_x = (np.argmin(np.abs(ZZ[40,:])))/len(ZZ[:,0])
+    print(breakingPoint_x)
     
     ax0.annotate('Breaking point', xy=(breakingPoint_x, 1.2), xytext=(0., 20),xycoords="axes fraction",textcoords="offset points",
                  va="center",ha="center",fontsize=EVEN_SMALLER_SIZE,
@@ -284,7 +285,7 @@ def make_fig2(X,Y,Z,delays,interpolate = False,figname=None,heatmap='bwr',R_cont
     # Bar, delay 3
     ax1 = plt.subplot2grid(plot_dimension,(12-1,0),rowspan=2,colspan=1)
     
-    plot_delay = 3
+    plot_delay = 4
     ZZ = copy.copy(delays[plot_delay]['Z'])                
     ZZ = gaussian_filter(delays[plot_delay]['Z'],gauss_smooth)     
     
@@ -300,6 +301,7 @@ def make_fig2(X,Y,Z,delays,interpolate = False,figname=None,heatmap='bwr',R_cont
 
 
     breakingPoint_x = (np.argmin(np.abs(ZZ[40,:])))/len(ZZ[:,0])
+    print(breakingPoint_x)
 
     ax1.annotate('', xy=(breakingPoint_x, 1.2), xytext=(0., 20),xycoords="axes fraction",textcoords="offset points",
                  va="center",ha="center",
@@ -311,7 +313,7 @@ def make_fig2(X,Y,Z,delays,interpolate = False,figname=None,heatmap='bwr',R_cont
     # Bar, delay 4
     ax2 = plt.subplot2grid(plot_dimension,(21-3,0),rowspan=2,colspan=1)
     
-    plot_delay = 4
+    plot_delay = 6
     ZZ = copy.copy(delays[plot_delay]['Z'])                
     ZZ = gaussian_filter(delays[plot_delay]['Z'],gauss_smooth)     
     
@@ -326,6 +328,7 @@ def make_fig2(X,Y,Z,delays,interpolate = False,figname=None,heatmap='bwr',R_cont
 
 
     breakingPoint_x = (np.argmin(np.abs(ZZ[40,:])))/len(ZZ[:,0])
+    print(breakingPoint_x)
 
     ax2.annotate('', xy=(breakingPoint_x, 1.2), xytext=(0., 20),xycoords="axes fraction",textcoords="offset points",
                  va="center",ha="center",
@@ -366,7 +369,7 @@ def make_fig2(X,Y,Z,delays,interpolate = False,figname=None,heatmap='bwr',R_cont
     # AX02: Delay 3
     # ----
 
-    plot_delay = 3
+    plot_delay = 4
     ax02 = plt.subplot2grid(plot_dimension,(0,2),rowspan=11,colspan=1)
 
     ZZ = copy.copy(delays[plot_delay]['Z']) 
@@ -400,7 +403,7 @@ def make_fig2(X,Y,Z,delays,interpolate = False,figname=None,heatmap='bwr',R_cont
     # ----
 
     
-    plot_delay = 4
+    plot_delay = 6
     ax11 = plt.subplot2grid(plot_dimension,(13,1),rowspan=11,colspan=1)
 
     ZZ = copy.copy(delays[plot_delay]['Z']) 
@@ -448,6 +451,8 @@ def make_fig2(X,Y,Z,delays,interpolate = False,figname=None,heatmap='bwr',R_cont
     fig.colorbar(im, cax=cbar_ax,label=r'$R_{\rm eff}^{\rm rapid}$')    
 
     ax12.text(0.10-.25,1.0,r"E",fontweight='bold',fontsize=BIGGER_SIZE,ha="left",va="top")
+    ax12.vlines(0.737, ymin=0, ymax=1, colors='blue', linestyles='dashed', linewidth=1)
+    ax12.vlines(0.787, ymin=0, ymax=1, colors='blue', linestyles='dashed', linewidth=1, label='Reported CI of Ag-RDTs sensitivity')
  
 
     box = ax0.get_position()
@@ -466,7 +471,7 @@ def make_fig2(X,Y,Z,delays,interpolate = False,figname=None,heatmap='bwr',R_cont
     ax2.set_position(box)  
     
     
-    plt.savefig(f'Figures/{figname}.png',dpi=400)
-    plt.savefig(f'Figures/{figname}.pdf',dpi=400)
-    plt.savefig(f'Figures/{figname}.svg',dpi=400)
+    plt.savefig(f'FiguresFinal/{figname}.png',dpi=400)
+    plt.savefig(f'FiguresFinal/{figname}.pdf',dpi=400)
+    plt.savefig(f'FiguresFinal/{figname}.svg',dpi=400)
     
