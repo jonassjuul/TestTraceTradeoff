@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=1        # Schedule one core
 #SBATCH --time=24:00:00     
 #SBATCH --partition=scavenge    # Run on scavenge queue (all nodes, low priority)
-#SBATCH --nodelist=cn12
+#SBATCH --nodelist=cn13
 
 # Print out the hostname of the node the job is running on
 
