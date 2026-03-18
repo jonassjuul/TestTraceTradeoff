@@ -11,10 +11,10 @@ include("Functions_main.jl")
 
 #TimeMax = 40;     # Maximum days run.
 InitialNumberOfInfected  = 100;      # Infectious at start
-MaximumAllowedInfected = 100000; # How many people will we maximally get?
+MaximumAllowedInfected = 10000; # How many people will we maximally get?
 N = MaximumAllowedInfected; # For theoretical calculations
 
-NumberOfExperiments  = 50; # Number of experiments
+NumberOfExperiments  = 200; # Number of experiments
 
 # Epidemiological details
 AsymptomaticFractionOfInfected = parse(Float64, ARGS[3]);# Fraction of infected that never get symptoms. 

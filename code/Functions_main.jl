@@ -279,6 +279,8 @@ function drawPoissonInteger(R0OfNode)
     return DrawnInteger
 end
 
+
+
 function drawNegativeBinomialInteger(R0OfNode)
 
     # Return an integer drawn from a Negative binomial distribution with mean R0OfNode
@@ -289,10 +291,11 @@ function drawNegativeBinomialInteger(R0OfNode)
     # Outputs
     # --------
     # DrawnInteger  Integer. Drawn from Negative binomial distribution
-    k = 0.1  # dispersion
-    p = k / (k + R0OfNode)  # success probability
-    r = k  
-    d = NegativeBinomial(r, p)
+    r = 0.1  # dispersion
+    p = r / (r + R0OfNode)  # success probability
+    d = NegativeBinomial(r, p) # using distribution packages
+
+    
 
     RandomFloat = rand()+0;
     DrawnInteger = -1;
@@ -302,7 +305,7 @@ function drawNegativeBinomialInteger(R0OfNode)
     while DrawnIntegerFound==false
         DrawnInteger += 1;
 
-        CumulativeNegativeBinomialDistribution += pdf(d, DrawnInteger)
+        CumulativeNegativeBinomialDistribution += pdf(d, DrawnInteger) # using Distributions packages
 
         if CumulativeNegativeBinomialDistribution >= RandomFloat
             DrawnIntegerFound = true
@@ -310,6 +313,21 @@ function drawNegativeBinomialInteger(R0OfNode)
         end
     end
     return DrawnInteger
+end
+
+function evaluateNegativeBinomialDistribution(R0OfNode,DrawnInteger)
+    r = 0.1  # dispersion
+    p = r / (r + R0OfNode)  # success probability
+    
+    if DrawnInteger > 20
+        factorial_computed = factorial(big(DrawnInteger));
+    else
+        factorial_computed = factorial(DrawnInteger);
+    end
+    binomail_coefficient = factorial(DrawnInteger+1)/factorial(DrawnInteger)/factorial(1)
+
+
+    return factorial(DrawnInteger+1)/factorial(DrawnInteger)/factorial(1)* (R0OfNode/(1+R0OfNode))^DrawnInteger / (R0OfNode + 1)
 end
 
 
@@ -671,9 +689,24 @@ function TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChild
     return StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren, tracedNodes, GoalOfCountDown_traced, timetraced_traced, GoalOfCountDown_untraced
 end
 
-#test negatibe binomial distribution
-#using Distributions
-#using Plots
+# #test negatibe binomial distribution
+# using Distributions
+# using Plots
 
-#samples = [drawNegativeBinomialInteger(2) for _ in 1:5000]
-#histogram(samples, bins=0:maximum(samples), xlabel="Value", ylabel="Frequency", title="Negative Binomial Samples (R₀=2)", normalize=true, ylim=(0, 1), xlim=(0, 20))
+# R0 = 2
+# samples = [drawNegativeBinomialInteger(R0) for _ in 1:10000]
+# histogram(samples, bins=0:maximum(samples), xlabel="Value", ylabel="Frequency", title="Negative Binomial Samples (R₀=2)", normalize=true, ylim=(0, 1), xlim=(0, 20))
+# mean(samples), var(samples)
+# #theoretical mean and variance
+# r = 0.1
+# p = r / (r + R0)
+# var_theoretical = r * (1 - p) / p^2
+# print("theoretical mean: ", R0, " theoretical variance: ", var_theoretical)
+
+
+# samples = [drawGeometricInteger(R0) for _ in 1:5000]
+# histogram(samples, bins=0:maximum(samples), xlabel="Value", ylabel="Frequency", title="Geometric Samples (R₀=2)", normalize=true, ylim=(0, 1), xlim=(0, 20))
+# #theoretical mean and variance
+# p = 1 / (1 + R0)
+# var_theoretical = (1 - p) / p^2
+# print("theoretical mean: ", R0, " theoretical variance: ", var_theoretical)

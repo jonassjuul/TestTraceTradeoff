@@ -6,20 +6,11 @@
 #SBATCH --cpus-per-task=1        # Schedule one core
 #SBATCH --time=24:00:00     
 #SBATCH --partition=scavenge    # Run on scavenge queue (all nodes, low priority)
-#SBATCH --nodelist=cn3
+#SBATCH --nodelist=cn11
 
 # Print out the hostname of the node the job is running on
 
 module load Julia
 
 # Run the Julia script (Argument order: testwait, resultwait, Pasymp, R0, OffspringDistribution, InfectiousProfile)
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 10.0 0.3 2.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 11.0 0.3 2.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 12.0 0.3 2.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 13.0 0.3 2.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 14.0 0.3 2.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 15.0 0.3 2.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 16.0 0.3 2.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 17.0 0.3 2.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 18.0 0.3 2.0 "poisson" "empirical"
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 19.0 0.3 2.0 "poisson" "empirical"
+julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 0.0 0.0 0.3 2.0 "negativebinomial" "empirical"
