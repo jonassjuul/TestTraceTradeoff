@@ -11,10 +11,10 @@ include("Functions_main.jl")
 
 #TimeMax = 40;     # Maximum days run.
 InitialNumberOfInfected  = 100;      # Infectious at start
-MaximumAllowedInfected = 10000; # How many people will we maximally get?
+MaximumAllowedInfected = 100000; # How many people will we maximally get?
 N = MaximumAllowedInfected; # For theoretical calculations
 
-NumberOfExperiments  = 200; # Number of experiments
+NumberOfExperiments  = 50; # Number of experiments
 
 # Epidemiological details
 AsymptomaticFractionOfInfected = parse(Float64, ARGS[3]);# Fraction of infected that never get symptoms. 
@@ -43,7 +43,7 @@ linspace = 51;
 DirectoryToSaveResults = "code/OutputsHPC/";
 
 # Define Filename where results will be saved
-FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfInfected,"_Nexp",NumberOfExperiments,"_R0",R0,"_WaitBeforeTestTaken",Int(WaitBeforeTestTaken),"_WaitBeforeTestResult",Int(WaitBeforeTestResult), "_Asymptomatics",AsymptomaticFractionOfInfected,"_InfectiousProfile",InfectiousProfile,"_OffspringDistribution", OffspringDistribution,".txt");
+FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfInfected,"_Nexp",NumberOfExperiments,"_R0",R0,"_WaitBeforeTestTaken",Int(WaitBeforeTestTaken),"_WaitBeforeTestResult",Int(WaitBeforeTestResult), "_Asymptomatics",AsymptomaticFractionOfInfected,"_InfectiousProfile",InfectiousProfile,"_OffspringDistribution", OffspringDistribution,"_sim_no",ARGS[7],".txt");
 
 # First list in filename where results will be saved specifies columns
 FirstLineInFile = string("False negative test rate,","Tracing efficiency,","N_infected_done,","N_recovered,","ReffMean,","ReffStd,","ReffTheoretical,","N_traced");
