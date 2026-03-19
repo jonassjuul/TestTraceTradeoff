@@ -1,0 +1,1 @@
+/var/spool/slurmd/job57925/slurm_script: line 27: 2500380 Killed                  julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 1.0 0.3 2.0 "negativebinomial" "empirical" 6
