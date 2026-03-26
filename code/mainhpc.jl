@@ -133,7 +133,11 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
 
             # Run model until none is active anymore
             NodesStillActive=true;
-            global TimeStep = 0;
+            TimeStep = 0;
+            WaitBeforeTestResult_local = WaitBeforeTestResult
+            GoalOfCountDown_traced_local = Any[]
+            timetraced_traced_local = Any[]
+            GoalOfCountDown_untraced_local = Any[]
             while NodesStillActive==true
                 # Advance Time 1 step
                 TimeStep +=1;
@@ -150,7 +154,7 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
                 StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,ListOfChildren,NumberOfInfected=InfectNodesOnThisTimestep(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,MaximumAllowedInfected,NumberOfInfected,R0,MeanOfLognormal,OffspringDistribution,InfectiousProfile);
 
                 # Trace nodes that should get traced this time step and test nodes that get symptoms.
-                StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren, tracedNodes, GoalOfCountDown_traced, timetraced_traced, GoalOfCountDown_untraced = TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren,Asymptomatic,MaximumAllowedInfected,WaitBeforeTestTaken,ProbabilityChildIsTraced,tracedNodes,GoalOfCountDown_traced,timetraced_traced, GoalOfCountDown_untraced);
+                StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren, tracedNodes, GoalOfCountDown_traced_local, timetraced_traced_local, GoalOfCountDown_untraced_local = TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren,Asymptomatic,MaximumAllowedInfected,WaitBeforeTestTaken,ProbabilityChildIsTraced,tracedNodes,GoalOfCountDown_traced_local,timetraced_traced_local, GoalOfCountDown_untraced_local);
             end
 
              #count proportion of traced nodes
@@ -161,10 +165,6 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
             end
 
             # Having run simulation to end, count results in average over simulations.
-            push!(EffectiveReproduction, (NumberOfInfected-InitialNumberOfInfected)/NumberOfRecovered)
-            RecoveredPeople_AveragedOverExperiments += NumberOfRecovered/NumberOfExperiments
-            InfectedPeople_AveragedOverExperiments += (NumberOfInfected-InitialNumberOfInfected)/NumberOfExperiments
-           
             Reff_each[ExperimentNumber] = (NumberOfInfected-InitialNumberOfInfected)/NumberOfRecovered
             Recovered_each[ExperimentNumber] = NumberOfRecovered
             Infected_each[ExperimentNumber] = (NumberOfInfected-InitialNumberOfInfected)
