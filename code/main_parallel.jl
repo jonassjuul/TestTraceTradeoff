@@ -2,6 +2,7 @@
 using DelimitedFiles
 using Statistics
 using Distributions
+using Base.Threads
 # Include my functions.....
 include("Functions_main.jl")
 
@@ -11,69 +12,62 @@ include("Functions_main.jl")
 
 #TimeMax = 40;     # Maximum days run.
 InitialNumberOfInfected  = 100;      # Infectious at start
-MaximumAllowedInfected = 100000; # How many people will we maximally get?
+MaximumAllowedInfected = 10000; # How many people will we maximally get?
 N = MaximumAllowedInfected; # For theoretical calculations
 
-NumberOfExperiments  = 50; # Number of experiments
+NumberOfExperiments  = 500; # Number of experiments
 
 # Epidemiological details
-AsymptomaticFractionOfInfected = parse(Float64, ARGS[3]);# Fraction of infected that never get symptoms. 
+AsymptomaticFractionOfInfected = 0.3;# Fraction of infected that never get symptoms. 
 
-R0 = parse(Float64, ARGS[4]); #3//2.5 # Mean number of children in full period of infection.
-
-OffspringDistribution = ARGS[5];
+R0 = 2.0; #3//2.5 # Mean number of children in full period of infection.
 # OffspringDistribution = "poisson";
 # OffspringDistribution = "geometric";
+OffspringDistribution = "negativebinomial";
 
-InfectiousProfile = ARGS[6];
-# InfectiousProfile = "empirical";
+InfectiousProfile = "empirical";
 # InfectiousProfile = "FlatSkewed";
 MeanOfLognormal = getMeanOfLognormalDistribution();
 
 # Societal details
-WaitBeforeTestTaken  = parse(Float64, ARGS[1]);  # Number of days before test is taken
-WaitBeforeTestResult  = parse(Float64, ARGS[2]); # Number of days before test result arrives after test is taken
+WaitBeforeTestTaken  = 0;  # Number of days before test is taken
+WaitBeforeTestResult  = 0; # Number of days before test result arrives after test is taken
 
 # Test-and-trace details
-ProbabilityChildIsTraced  = parse(Float64, ARGS[8])-0.02; #+34*0.02 // Fraction of children that are found through contact tracing
-ProbabilityFalseNegativeTest = -0.02;
-linspace = 51;
+ProbabilityChildIsTraced  = -0.1; #+34*0.02 // Fraction of children that are found through contact tracing
+ProbabilityFalseNegativeTest = -0.1;
+linspace = 11;
 #--------------------
 # Define directory where results will be saved
 DirectoryToSaveResults = "code/OutputsHPC/";
 
 # Define Filename where results will be saved
-FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfInfected,"_Nexp",NumberOfExperiments,"_R0",R0,"_WaitBeforeTestTaken",Int(WaitBeforeTestTaken),"_WaitBeforeTestResult",Int(WaitBeforeTestResult), "_Asymptomatics",AsymptomaticFractionOfInfected,"_InfectiousProfile",InfectiousProfile,"_OffspringDistribution", OffspringDistribution,"_sim_no",ARGS[7],".txt");
+FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfInfected,"_Nexp",NumberOfExperiments,"_R0",R0,"_WaitBeforeTestTaken",WaitBeforeTestTaken,"_WaitBeforeTestResult",WaitBeforeTestResult, "_Asymptomatics",AsymptomaticFractionOfInfected,"_InfectiousProfile",InfectiousProfile,"_OffspringDistribution", OffspringDistribution,"full.txt");
 
 # First list in filename where results will be saved specifies columns
 FirstLineInFile = string("False negative test rate,","Tracing efficiency,","N_infected_done,","N_recovered,","ReffMean,","ReffStd,","ReffTheoretical,","N_traced");
 
 #Check if file already exists and handle accordingly
-# if isfile(string(DirectoryToSaveResults,FilenameToSaveResults))
-#     println("ERROR: File already exists: ", string(DirectoryToSaveResults,FilenameToSaveResults))
-#     println("Please remove the existing file or change the filename to avoid overwriting data.")
-#     error("Execution stopped to prevent overwriting existing file.")
-# end
+if isfile(string(DirectoryToSaveResults,FilenameToSaveResults))
+    println("ERROR: File already exists: ", string(DirectoryToSaveResults,FilenameToSaveResults))
+    println("Please remove the existing file or change the filename to avoid overwriting data.")
+    error("Execution stopped to prevent overwriting existing file.")
+end
 
-# AppendLineToFile(string(DirectoryToSaveResults,FilenameToSaveResults),FirstLineInFile);
+#AppendLineToFile(string(DirectoryToSaveResults,FilenameToSaveResults),FirstLineInFile);
 
 # Loop over different choices for 
 #   1. Contact tracing efficiency (probability that a child is traced when parent gets tested positive.)
 #   2. Test sensitivity
-if parse(Float64, ARGS[8]) >= 1.0
-    tracinglinspace = 1
-else
-    tracinglinspace = 2
-end
 
-elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:tracinglinspace
+elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
     # Each time model is run for a new Tracing Efficiency Value, increase ProbabilityChildIsTraced
-    global ProbabilityChildIsTraced += 0.02;
+    global ProbabilityChildIsTraced += 0.1;
     global WaitBeforeTestTaken = WaitBeforeTestTaken;
     global WaitBeforeTestResult = WaitBeforeTestResult;
 
     # Each time Tracing Efficiency Value increases, reset ProbabilityFalseNegativeTest
-    global ProbabilityFalseNegativeTest = -0.02;
+    global ProbabilityFalseNegativeTest = -0.1;
 
     if WaitBeforeTestTaken + WaitBeforeTestResult > 0 #only run with one test sensitivity value if there is a delay (slow test)
         testsentivitylinspace = 1
@@ -83,22 +77,23 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:tracinglinspace
 
     for TestSensitivityValueNumber = 1:testsentivitylinspace
         # Each time model is run for a new Tracing Efficiency Value, increase ProbabilityFalseNegativeTest
-        global ProbabilityFalseNegativeTest += 0.02;
+        global ProbabilityFalseNegativeTest += 0.1;
         # Print progress.
-        print("\nCurrently simulating parameters:\t", "False neg:\t", ProbabilityFalseNegativeTest, "\tTrace efficiency:\t", ProbabilityChildIsTraced,"\n")
+        # print("\nCurrently simulating parameters:\t", "False neg:\t", ProbabilityFalseNegativeTest, "\tTrace efficiency:\t", ProbabilityChildIsTraced,"\n")
 
         # Do NumberOfExperiments runs for each parameter combination. Results will be average results over these experiments.
         
-        # Define variables for averaged results
-        RecoveredPeople_AveragedOverExperiments = 0;
-        InfectedPeople_AveragedOverExperiments = 0;
-        EffectiveReproduction = [];
-        avgProportionTraced = 0; #Store the proportion of traced nodes for estimating theoretical Reff
-        GoalOfCountDown_traced = []; #store conditioned infection period lengths for traced nodes for estimating the theoretical Reff               
-        timetraced_traced = []; #store time until tracing for traced nodes for estimating the theoretical Reff
-        GoalOfCountDown_untraced = []; #store conditioned infection period lengths for untraced nodes for estimating the theoretical Reff
-        # Do NumberOfExperiments runs for each parameter combination. 
-        for ExperimentNumber = 1:NumberOfExperiments
+        # Define per-experiment storage for thread-safe aggregation
+        Recovered_each = zeros(Float64, NumberOfExperiments)
+        Infected_each = zeros(Float64, NumberOfExperiments)
+        Reff_each = zeros(Float64, NumberOfExperiments)
+        PropTraced_each = zeros(Float64, NumberOfExperiments)
+        GoalOfCountDown_traced_each = [Any[] for _ in 1:NumberOfExperiments]
+        timetraced_traced_each = [Any[] for _ in 1:NumberOfExperiments]
+        GoalOfCountDown_untraced_each = [Any[] for _ in 1:NumberOfExperiments]
+
+        # Do NumberOfExperiments runs for each parameter combination.
+        @threads for ExperimentNumber = 1:NumberOfExperiments
             #println("Experiment number\t",ExperimentNumber,"\tof:\t",NumberOfExperiments)
             # Define variables and vectors for each run.
             # -------
@@ -137,12 +132,16 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:tracinglinspace
 
             # Run model until none is active anymore
             NodesStillActive=true;
-            global TimeStep = 0;
+            TimeStep = 0;
+            WaitBeforeTestResult_local = WaitBeforeTestResult
+            GoalOfCountDown_traced_local = Any[]
+            timetraced_traced_local = Any[]
+            GoalOfCountDown_untraced_local = Any[]
             while NodesStillActive==true
                 # Advance Time 1 step
                 TimeStep +=1;
                 # Advance all infected and all waiting 1 time step.
-                StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,NodeCanTestPositive,TraceNodesChildren,WaitBeforeTestResult,NumberOfRecovered,FoundNoInfectiousOrExposedNode = AdvanceInfectedOneTimestep(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,NodeCanTestPositive,TraceNodesChildren,MaximumAllowedInfected,R0,MeanOfLognormal,WaitBeforeTestResult,NumberOfRecovered,ProbabilityFalseNegativeTest,OffspringDistribution,InfectiousProfile)
+                StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,NodeCanTestPositive,TraceNodesChildren,WaitBeforeTestResult_local,NumberOfRecovered,FoundNoInfectiousOrExposedNode = AdvanceInfectedOneTimestep(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,NodeCanTestPositive,TraceNodesChildren,MaximumAllowedInfected,R0,MeanOfLognormal,WaitBeforeTestResult_local,NumberOfRecovered,ProbabilityFalseNegativeTest,OffspringDistribution,InfectiousProfile)
 
                 # If no nodes are infectiuos or exposed, stop simulation.
                 if FoundNoInfectiousOrExposedNode == true
@@ -154,24 +153,35 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:tracinglinspace
                 StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,ListOfChildren,NumberOfInfected=InfectNodesOnThisTimestep(StateOfNodes,CountUpToStateChange,GoalOfCountDown,WhenInfectedWillInfectOthers,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,MaximumAllowedInfected,NumberOfInfected,R0,MeanOfLognormal,OffspringDistribution,InfectiousProfile);
 
                 # Trace nodes that should get traced this time step and test nodes that get symptoms.
-                StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren, tracedNodes, GoalOfCountDown_traced, timetraced_traced, GoalOfCountDown_untraced = TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren,Asymptomatic,MaximumAllowedInfected,WaitBeforeTestTaken,ProbabilityChildIsTraced,tracedNodes,GoalOfCountDown_traced,timetraced_traced, GoalOfCountDown_untraced);
+                StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren, tracedNodes, GoalOfCountDown_traced_local, timetraced_traced_local, GoalOfCountDown_untraced_local = TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren,Asymptomatic,MaximumAllowedInfected,WaitBeforeTestTaken,ProbabilityChildIsTraced,tracedNodes,GoalOfCountDown_traced_local,timetraced_traced_local, GoalOfCountDown_untraced_local);
             end
 
             #count proportion of traced nodes
             if NumberOfInfected < MaximumAllowedInfected
-                avgProportionTraced += sum(tracedNodes .== 1)/(NumberOfInfected-InitialNumberOfInfected)/NumberOfExperiments   
+                PropTraced_each[ExperimentNumber] = sum(tracedNodes .== 1)/(NumberOfInfected-InitialNumberOfInfected)
             else
-                avgProportionTraced += sum(tracedNodes .== 1)/(MaximumAllowedInfected-InitialNumberOfInfected)/NumberOfExperiments
+                PropTraced_each[ExperimentNumber] = sum(tracedNodes .== 1)/(MaximumAllowedInfected-InitialNumberOfInfected)
             end
 
             # Having run simulation to end, count results in average over simulations.
-            push!(EffectiveReproduction, (NumberOfInfected-InitialNumberOfInfected)/NumberOfRecovered)
-            RecoveredPeople_AveragedOverExperiments += NumberOfRecovered/NumberOfExperiments
-            InfectedPeople_AveragedOverExperiments += (NumberOfInfected-InitialNumberOfInfected)/NumberOfExperiments
+            Reff_each[ExperimentNumber] = (NumberOfInfected-InitialNumberOfInfected)/NumberOfRecovered
+            Recovered_each[ExperimentNumber] = NumberOfRecovered
+            Infected_each[ExperimentNumber] = (NumberOfInfected-InitialNumberOfInfected)
+            GoalOfCountDown_traced_each[ExperimentNumber] = GoalOfCountDown_traced_local
+            timetraced_traced_each[ExperimentNumber] = timetraced_traced_local
+            GoalOfCountDown_untraced_each[ExperimentNumber] = GoalOfCountDown_untraced_local
            
         end
 
-        τ = Int(WaitBeforeTestTaken + WaitBeforeTestResult)
+        RecoveredPeople_AveragedOverExperiments = mean(Recovered_each)
+        InfectedPeople_AveragedOverExperiments = mean(Infected_each)
+        EffectiveReproduction = Reff_each
+        avgProportionTraced = mean(PropTraced_each)
+        GoalOfCountDown_traced = vcat(GoalOfCountDown_traced_each...)
+        timetraced_traced = vcat(timetraced_traced_each...)
+        GoalOfCountDown_untraced = vcat(GoalOfCountDown_untraced_each...)
+
+        τ = WaitBeforeTestTaken + WaitBeforeTestResult
         I1untrace = 0.0
         I2untrace = 0.0
 
@@ -182,7 +192,7 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:tracinglinspace
             t_half = GoalOfCountDown_untraced[test] /2 + 1
             InfectiousnessDistribution = getInfectiousnessDistribution(GoalOfCountDown_untraced[test], InfectiousProfile);
             R0OfNode = R0 * GoalOfCountDown_untraced[test] / (2*MeanOfLognormal);
-            NumberOfChildrenToDraw = drawNumberOfChildren(R0OfNode,"poisson")
+            NumberOfChildrenToDraw = drawNumberOfChildren(R0OfNode,OffspringDistribution)
             L = length(InfectiousnessDistribution);
 
             # Convert to integer indices
@@ -204,11 +214,11 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:tracinglinspace
         I1trace = 0.0
         I2trace = 0.0
         Ntrace = length(timetraced_traced)
-                if Ntrace != 0
+        if Ntrace != 0
             for i in 1:Ntrace
                 InfectiousnessDistribution = getInfectiousnessDistribution(GoalOfCountDown_traced[i], InfectiousProfile);
                 R0OfNode = R0 * GoalOfCountDown_traced[i] / (2*MeanOfLognormal);
-                NumberOfChildrenToDraw = drawNumberOfChildren(R0OfNode,"poisson")
+                NumberOfChildrenToDraw = drawNumberOfChildren(R0OfNode,OffspringDistribution)
                 L = length(InfectiousnessDistribution);
                 b1 = Int(timetraced_traced[i]);
                 b2 = b1 + τ;
@@ -234,14 +244,16 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:tracinglinspace
         end
 
         theoreticalMean = (R0 - (1-pTraceEff)*theoreticalMean_NoTracingTerm - pTraceEff*theoreticalMean_TracingTerm)
-        print("Theoretical Reff:\t", theoreticalMean, "\n")
-        print("Empirical Reff:\t", mean(EffectiveReproduction), "\n")
+        # print("Theoretical Reff:\t", theoreticalMean, "\n")
+        # print("Empirical Reff:\t", mean(EffectiveReproduction), "\n")
+        # print("difference:\t", mean(EffectiveReproduction)-theoreticalMean, "\n and in percentage:\t", (mean(EffectiveReproduction)-theoreticalMean)/theoreticalMean*100, " %\n")
         # Print averaged results to file.
         AveragedResultsToPrintToFile = string(ProbabilityFalseNegativeTest,",",ProbabilityChildIsTraced,",",InfectedPeople_AveragedOverExperiments,",",RecoveredPeople_AveragedOverExperiments,",",mean(EffectiveReproduction), ",", std(EffectiveReproduction)/sqrt(NumberOfExperiments), ",", theoreticalMean, ",", Ntrace/NumberOfExperiments);
-        AppendLineToFile(string(DirectoryToSaveResults,FilenameToSaveResults),AveragedResultsToPrintToFile)
+        #AppendLineToFile(string(DirectoryToSaveResults,FilenameToSaveResults),AveragedResultsToPrintToFile)
   
     end
 end
 print("\n Total elapsed time:\t", elapsed_time, " seconds.\n")
+
 
 

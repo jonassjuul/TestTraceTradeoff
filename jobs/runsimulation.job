@@ -1,21 +1,17 @@
 #!/bin/bash
 
-#SBATCH --job-name=negativeBinomial
+#SBATCH --job-name=negativeBinomial       # Job name
 #SBATCH --output=/home/morah/TestTraceTradeoff/jobOutputs/job.%j.out 
 #SBATCH --error=/home/morah/TestTraceTradeoff/jobOutputs/job.%j.err 
-#SBATCH --cpus-per-task=6        # Update to match number of parallel jobs
+#SBATCH --cpus-per-task=8        # Schedule one core
 #SBATCH --time=24:00:00     
-#SBATCH --partition=scavenge
-#SBATCH --nodelist=cn11
+#SBATCH --partition=scavenge    # Run on scavenge queue (all nodes, low priority)
+#SBATCH --nodelist=cn10
+
+# Print out the hostname of the node the job is running on
 
 module load Julia
 
-# Run Julia scripts in parallel
-julia /home/morah/TestTraceTradeoff/code/mainhpc_finish.jl 0.0 0.0 0.3 2.0 "negativebinomial" "empirical" 1 0.9800000000000005&
-julia /home/morah/TestTraceTradeoff/code/mainhpc_finish.jl 0.0 0.0 0.3 2.0 "negativebinomial" "empirical" 2 1.0000000000000004&
-julia /home/morah/TestTraceTradeoff/code/mainhpc_finish.jl 0.0 0.0 0.3 2.0 "negativebinomial" "empirical" 3 1.0000000000000004&
-julia /home/morah/TestTraceTradeoff/code/mainhpc_finish.jl 0.0 0.0 0.3 2.0 "negativebinomial" "empirical" 4 1.0000000000000004&
-julia /home/morah/TestTraceTradeoff/code/mainhpc_finish.jl 0.0 0.0 0.3 2.0 "negativebinomial" "empirical" 5 1.0000000000000004&
-julia /home/morah/TestTraceTradeoff/code/mainhpc_finish.jl 0.0 0.0 0.3 2.0 "negativebinomial" "empirical" 6 1.0000000000000004&
-# Wait for all background jobs to complete
-wait
+# Run the Julia script (Argument order: testwait, resultwait, Pasymp, R0, OffspringDistribution, InfectiousProfile)
+
+JULIA_NUM_THREADS=8 julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 0.0 0.0 0.3 2.0 "negativebinomial" "empirical" 
