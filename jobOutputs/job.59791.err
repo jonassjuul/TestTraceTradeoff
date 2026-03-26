@@ -1,0 +1,7 @@
+ERROR: LoadError: UndefVarError: `GoalOfCountDown_traced` not defined in local scope
+Stacktrace:
+ [1] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc.jl:153 [inlined]
+ [2] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc.jl:65
