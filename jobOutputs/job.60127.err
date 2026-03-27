@@ -1,0 +1,117 @@
+ERROR: LoadError: UndefVarError: `EmpiricalInfectiousness` not defined in local scope
+Stacktrace:
+ [1] getInfectiousnessDistribution(CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:413
+ [2] drawTimesWhenInfectedWillInfectOthers(NumberOfChildrenToDraw::Int64, CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:350
+ [3] getInitialConditionsOfSimulation(StateOfNodes::Vector{Float64}, CountUpToStateChange::Vector{Float64}, GoalOfCountDown::Vector{Float64}, WhenInfectedWillInfectOthers::Matrix{Vector{Int64}}, InitialNumberOfInfected::Int64, R0::Float64, MeanOfLognormalDistribution::Float64, OffspringDistribution::String, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:468
+ [4] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc.jl:130 [inlined]
+ [5] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc.jl:65
+ERROR: LoadError: UndefVarError: `EmpiricalInfectiousness` not defined in local scope
+Stacktrace:
+ [1] getInfectiousnessDistribution(CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:413
+ [2] drawTimesWhenInfectedWillInfectOthers(NumberOfChildrenToDraw::Int64, CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:350
+ [3] getInitialConditionsOfSimulation(StateOfNodes::Vector{Float64}, CountUpToStateChange::Vector{Float64}, GoalOfCountDown::Vector{Float64}, WhenInfectedWillInfectOthers::Matrix{Vector{Int64}}, InitialNumberOfInfected::Int64, R0::Float64, MeanOfLognormalDistribution::Float64, OffspringDistribution::String, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:468
+ [4] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc.jl:130 [inlined]
+ [5] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc.jl:65
+ERROR: LoadError: UndefVarError: `EmpiricalInfectiousness` not defined in local scope
+Stacktrace:
+ [1] getInfectiousnessDistribution(CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:413
+ [2] drawTimesWhenInfectedWillInfectOthers(NumberOfChildrenToDraw::Int64, CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:350
+ [3] getInitialConditionsOfSimulation(StateOfNodes::Vector{Float64}, CountUpToStateChange::Vector{Float64}, GoalOfCountDown::Vector{Float64}, WhenInfectedWillInfectOthers::Matrix{Vector{Int64}}, InitialNumberOfInfected::Int64, R0::Float64, MeanOfLognormalDistribution::Float64, OffspringDistribution::String, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:468
+ [4] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc.jl:130 [inlined]
+ [5] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc.jl:65
+ERROR: LoadError: UndefVarError: `EmpiricalInfectiousness` not defined in local scope
+Stacktrace:
+ [1] getInfectiousnessDistribution(CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:413
+ [2] drawTimesWhenInfectedWillInfectOthers(NumberOfChildrenToDraw::Int64, CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:350
+ [3] getInitialConditionsOfSimulation(StateOfNodes::Vector{Float64}, CountUpToStateChange::Vector{Float64}, GoalOfCountDown::Vector{Float64}, WhenInfectedWillInfectOthers::Matrix{Vector{Int64}}, InitialNumberOfInfected::Int64, R0::Float64, MeanOfLognormalDistribution::Float64, OffspringDistribution::String, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:468
+ [4] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc.jl:130 [inlined]
+ [5] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc.jl:65
+ERROR: LoadError: UndefVarError: `EmpiricalInfectiousness` not defined in local scope
+Stacktrace:
+ [1] getInfectiousnessDistribution(CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:413
+ [2] drawTimesWhenInfectedWillInfectOthers(NumberOfChildrenToDraw::Int64, CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:350
+ [3] getInitialConditionsOfSimulation(StateOfNodes::Vector{Float64}, CountUpToStateChange::Vector{Float64}, GoalOfCountDown::Vector{Float64}, WhenInfectedWillInfectOthers::Matrix{Vector{Int64}}, InitialNumberOfInfected::Int64, R0::Float64, MeanOfLognormalDistribution::Float64, OffspringDistribution::String, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:468
+ [4] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc.jl:130 [inlined]
+ [5] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc.jl:65
+ERROR: LoadError: UndefVarError: `EmpiricalInfectiousness` not defined in local scope
+Stacktrace:
+ [1] getInfectiousnessDistribution(CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:413
+ [2] drawTimesWhenInfectedWillInfectOthers(NumberOfChildrenToDraw::Int64, CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:350
+ [3] getInitialConditionsOfSimulation(StateOfNodes::Vector{Float64}, CountUpToStateChange::Vector{Float64}, GoalOfCountDown::Vector{Float64}, WhenInfectedWillInfectOthers::Matrix{Vector{Int64}}, InitialNumberOfInfected::Int64, R0::Float64, MeanOfLognormalDistribution::Float64, OffspringDistribution::String, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:468
+ [4] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc.jl:130 [inlined]
+ [5] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc.jl:65
+ERROR: LoadError: UndefVarError: `EmpiricalInfectiousness` not defined in local scope
+Stacktrace:
+ [1] getInfectiousnessDistribution(CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:413
+ [2] drawTimesWhenInfectedWillInfectOthers(NumberOfChildrenToDraw::Int64, CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:350
+ [3] getInitialConditionsOfSimulation(StateOfNodes::Vector{Float64}, CountUpToStateChange::Vector{Float64}, GoalOfCountDown::Vector{Float64}, WhenInfectedWillInfectOthers::Matrix{Vector{Int64}}, InitialNumberOfInfected::Int64, R0::Float64, MeanOfLognormalDistribution::Float64, OffspringDistribution::String, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:468
+ [4] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc.jl:130 [inlined]
+ [5] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc.jl:65
+ERROR: LoadError: UndefVarError: `EmpiricalInfectiousness` not defined in local scope
+Stacktrace:
+ [1] getInfectiousnessDistribution(CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:413
+ [2] drawTimesWhenInfectedWillInfectOthers(NumberOfChildrenToDraw::Int64, CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:350
+ [3] getInitialConditionsOfSimulation(StateOfNodes::Vector{Float64}, CountUpToStateChange::Vector{Float64}, GoalOfCountDown::Vector{Float64}, WhenInfectedWillInfectOthers::Matrix{Vector{Int64}}, InitialNumberOfInfected::Int64, R0::Float64, MeanOfLognormalDistribution::Float64, OffspringDistribution::String, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:468
+ [4] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc.jl:130 [inlined]
+ [5] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc.jl:65
+ERROR: LoadError: UndefVarError: `EmpiricalInfectiousness` not defined in local scope
+Stacktrace:
+ [1] getInfectiousnessDistribution(CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:413
+ [2] drawTimesWhenInfectedWillInfectOthers(NumberOfChildrenToDraw::Int64, CounterGoalOfNode::Float64, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:350
+ [3] getInitialConditionsOfSimulation(StateOfNodes::Vector{Float64}, CountUpToStateChange::Vector{Float64}, GoalOfCountDown::Vector{Float64}, WhenInfectedWillInfectOthers::Matrix{Vector{Int64}}, InitialNumberOfInfected::Int64, R0::Float64, MeanOfLognormalDistribution::Float64, OffspringDistribution::String, InfectiousProfile::String)
+   @ Main ~/TestTraceTradeoff/code/Functions_main.jl:468
+ [4] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc.jl:130 [inlined]
+ [5] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc.jl:65
