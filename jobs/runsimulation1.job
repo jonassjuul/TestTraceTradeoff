@@ -1,12 +1,12 @@
 #!/bin/bash
 
-#SBATCH --job-name=negativeBinomial       # Job name
+#SBATCH --job-name=Se_x       # Job name
 #SBATCH --output=/home/morah/TestTraceTradeoff/jobOutputs/job.%j.out 
 #SBATCH --error=/home/morah/TestTraceTradeoff/jobOutputs/job.%j.err 
 #SBATCH --cpus-per-task=1        # Schedule one core
 #SBATCH --time=24:00:00     
 #SBATCH --partition=scavenge    # Run on scavenge queue (all nodes, low priority)
-#SBATCH --nodelist=cn13
+#SBATCH --nodelist=cn15
 
 # Print out the hostname of the node the job is running on
 
@@ -14,59 +14,12 @@ module load Julia
 
 # Run the Julia script (Argument order: testwait, resultwait, Pasymp, R0, OffspringDistribution, InfectiousProfile)
 
-
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 1.0 0.3 2.0 "negativebinomial" "empirical" 1 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 1.0 0.3 2.0 "negativebinomial" "empirical" 2 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 1.0 0.3 2.0 "negativebinomial" "empirical" 3 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 1.0 0.3 2.0 "negativebinomial" "empirical" 4 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 1.0 0.3 2.0 "negativebinomial" "empirical" 5 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 1.0 0.3 2.0 "negativebinomial" "empirical" 6 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 1.0 0.3 2.0 "negativebinomial" "empirical" 7 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 1.0 0.3 2.0 "negativebinomial" "empirical" 8 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 1.0 0.3 2.0 "negativebinomial" "empirical" 9 &
-wait
-
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 3.0 0.3 2.0 "negativebinomial" "empirical" 1 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 3.0 0.3 2.0 "negativebinomial" "empirical" 2 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 3.0 0.3 2.0 "negativebinomial" "empirical" 3 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 3.0 0.3 2.0 "negativebinomial" "empirical" 4 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 3.0 0.3 2.0 "negativebinomial" "empirical" 5 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 3.0 0.3 2.0 "negativebinomial" "empirical" 6 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 3.0 0.3 2.0 "negativebinomial" "empirical" 7 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 3.0 0.3 2.0 "negativebinomial" "empirical" 8 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 3.0 0.3 2.0 "negativebinomial" "empirical" 9 &
-wait
-
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 5.0 0.3 2.0 "negativebinomial" "empirical" 1 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 5.0 0.3 2.0 "negativebinomial" "empirical" 2 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 5.0 0.3 2.0 "negativebinomial" "empirical" 3 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 5.0 0.3 2.0 "negativebinomial" "empirical" 4 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 5.0 0.3 2.0 "negativebinomial" "empirical" 5 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 5.0 0.3 2.0 "negativebinomial" "empirical" 6 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 5.0 0.3 2.0 "negativebinomial" "empirical" 7 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 5.0 0.3 2.0 "negativebinomial" "empirical" 8 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 5.0 0.3 2.0 "negativebinomial" "empirical" 9 &
-wait
-
-
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 7.0 0.3 2.0 "negativebinomial" "empirical" 1 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 7.0 0.3 2.0 "negativebinomial" "empirical" 2 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 7.0 0.3 2.0 "negativebinomial" "empirical" 3 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 7.0 0.3 2.0 "negativebinomial" "empirical" 4 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 7.0 0.3 2.0 "negativebinomial" "empirical" 5 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 7.0 0.3 2.0 "negativebinomial" "empirical" 6 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 7.0 0.3 2.0 "negativebinomial" "empirical" 7 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 7.0 0.3 2.0 "negativebinomial" "empirical" 8 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 7.0 0.3 2.0 "negativebinomial" "empirical" 9 &
-wait
-
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 9.0 0.3 2.0 "negativebinomial" "empirical" 1 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 9.0 0.3 2.0 "negativebinomial" "empirical" 2 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 9.0 0.3 2.0 "negativebinomial" "empirical" 3 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 9.0 0.3 2.0 "negativebinomial" "empirical" 4 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 9.0 0.3 2.0 "negativebinomial" "empirical" 5 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 9.0 0.3 2.0 "negativebinomial" "empirical" 6 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 9.0 0.3 2.0 "negativebinomial" "empirical" 7 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 9.0 0.3 2.0 "negativebinomial" "empirical" 8 &
-julia /home/morah/TestTraceTradeoff/code/mainhpc.jl 1.0 9.0 0.3 2.0 "negativebinomial" "empirical" 9 &
-wait
+JULIA_NUM_THREADS=8 julia /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl 0.0 0.0 0.3 2.0 "negativebinomial" "empirical" 
+JULIA_NUM_THREADS=8 julia /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl 1.0 0.0 0.3 2.0 "negativebinomial" "empirical" 
+JULIA_NUM_THREADS=8 julia /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl 1.0 1.0 0.3 2.0 "negativebinomial" "empirical" 
+JULIA_NUM_THREADS=8 julia /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl 1.0 2.0 0.3 2.0 "negativebinomial" "empirical" 
+JULIA_NUM_THREADS=8 julia /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl 1.0 3.0 0.3 2.0 "negativebinomial" "empirical" 
+JULIA_NUM_THREADS=8 julia /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl 1.0 4.0 0.3 2.0 "negativebinomial" "empirical" 
+JULIA_NUM_THREADS=8 julia /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl 1.0 5.0 0.3 2.0 "negativebinomial" "empirical" 
+JULIA_NUM_THREADS=8 julia /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl 1.0 7.0 0.3 2.0 "negativebinomial" "empirical" 
+JULIA_NUM_THREADS=8 julia /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl 1.0 9.0 0.3 2.0 "negativebinomial" "empirical" 

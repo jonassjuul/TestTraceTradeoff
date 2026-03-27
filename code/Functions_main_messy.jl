@@ -242,6 +242,8 @@ function drawNumberOfChildren(R0OfNode,OffspringDistribution)
     elseif (OffspringDistribution=="geometric")
         NumberOfChildren = drawGeometricInteger(R0OfNode)
 
+    elseif (OffspringDistribution=="negativebinomial")
+        NumberOfChildren = drawNegativeBinomialInteger(R0OfNode)
     end
     return NumberOfChildren
 end
@@ -267,6 +269,40 @@ function drawPoissonInteger(R0OfNode)
         CumulativePoissonDistribution += evaluatePoissonDistribution(R0OfNode,DrawnInteger)
 
         if CumulativePoissonDistribution >= RandomFloat
+            DrawnIntegerFound = true
+            break
+        end
+    end
+    return DrawnInteger
+end
+
+function drawNegativeBinomialInteger(R0OfNode)
+
+    # Return an integer drawn from a Negative binomial distribution with mean R0OfNode
+    # Inputs 
+    # --------
+    # R0OfNode:     Float. Mean of Negative binomial distribution
+
+    # Outputs
+    # --------
+    # DrawnInteger  Integer. Drawn from Negative binomial distribution
+    r = 0.1  # dispersion
+    p = r / (r + R0OfNode)  # success probability
+    d = NegativeBinomial(r, p) # using distribution packages
+
+    
+
+    RandomFloat = rand()+0;
+    DrawnInteger = -1;
+
+    CumulativeNegativeBinomialDistribution =0 ;
+    DrawnIntegerFound = false;
+    while DrawnIntegerFound==false
+        DrawnInteger += 1;
+
+        CumulativeNegativeBinomialDistribution += pdf(d, DrawnInteger) # using Distributions packages
+
+        if CumulativeNegativeBinomialDistribution >= RandomFloat
             DrawnIntegerFound = true
             break
         end
@@ -551,7 +587,7 @@ function makeNodeRemoved(StateOfNodes_individual,CountUpToStateChange_individual
 end
 
 
-function TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren, WhenInfectedWillInfectOthers,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren,Asymptomatic,MaximumAllowedInfected,WaitBeforeTestTaken,ProbabilityChildIsTraced, sumInfectiontimeGivenTracing, tracedNodes, GoalOfCountDown_traced, timetraced_traced, nonvalidtracings, GoalOfCountDown_untraced)
+function TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren, WhenInfectedWillInfectOthers,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren,Asymptomatic,MaximumAllowedInfected,WaitBeforeTestTaken,ProbabilityChildIsTraced, sumInfectiontimeGivenTracing, tracedNodes, GoalOfCountDown_traced, timetraced_traced, GoalOfCountDown_untraced)
 
     # This function traces children of nodes that tested positive this time step. Also orders test for nodes that got symptomatic this time step.
 
@@ -599,11 +635,9 @@ function TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChild
                                 push!(GoalOfCountDown_traced, GoalOfCountDown[IDOfTracedChild])
                                 push!(timetraced_traced, CountUpToStateChange[IDOfTracedChild])
                             else
-                                nonvalidtracings += 1
                                 tracedNodes[IDOfTracedChild] = 2
                             end
                         else
-                            nonvalidtracings += 1
                             tracedNodes[IDOfTracedChild] = 2
                         end
                     end
@@ -613,10 +647,10 @@ function TraceNode(StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChild
         end
 
     end
-    return StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren, sumInfectiontimeGivenTracing, tracedNodes, GoalOfCountDown_traced, timetraced_traced, nonvalidtracings, GoalOfCountDown_untraced
+    return StateOfNodes,CountUpToStateChange,GoalOfCountDown,ListOfChildren,TestArrivalTimeOfNodes,ResultArrivalTimeOfNodes,TraceNodesChildren, sumInfectiontimeGivenTracing, tracedNodes, GoalOfCountDown_traced, timetraced_traced, GoalOfCountDown_untraced
 end
 
-function getTestSensitivityDistribution(p_false, infectiousness, GoalOfCountDown_individual, treshold=0.9)
+function getTestSensitivityDistribution(p_false, infectiousness, GoalOfCountDown_individual, treshold=1)
     p_test = 1.0 - p_false
     weighted_p_test = (p_test).*infectiousness*GoalOfCountDown_individual
     while sum(weighted_p_test .> treshold) != 0
