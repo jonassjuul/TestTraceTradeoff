@@ -1,0 +1,105 @@
+ERROR: LoadError: BoundsError: attempt to access 6-element Vector{Float64} at index [-1]
+Stacktrace:
+ [1] throw_boundserror(A::Vector{Float64}, I::Tuple{Int64})
+   @ Base ./essentials.jl:14
+ [2] getindex
+   @ ./essentials.jl:916 [inlined]
+ [3] AdvanceResultWaitOneStep
+   @ ~/TestTraceTradeoff/code/Functions_main_messy.jl:88 [inlined]
+ [4] AdvanceInfectedOneTimestep(StateOfNodes::Vector{Float64}, CountUpToStateChange::Vector{Float64}, GoalOfCountDown::Vector{Float64}, WhenInfectedWillInfectOthers::Matrix{Vector{Int64}}, TestArrivalTimeOfNodes::Vector{Float64}, ResultArrivalTimeOfNodes::Vector{Float64}, NodeCanTestPositive::Vector{Float64}, TraceNodesChildren::Vector{Float64}, MaximumAllowedInfected::Int64, R0::Float64, MeanOfLognormal::Float64, WaitBeforeTestResult::Float64, NumberOfRecovered::Int64, ProbabilityFalseNegativeTest::Float64, OffspringDistribution::String, InfectiousProfile::String, pTestDistribution::Matrix{Vector{Float64}})
+   @ Main ~/TestTraceTradeoff/code/Functions_main_messy.jl:71
+ [5] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc_Se.jl:145 [inlined]
+ [6] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl:65
+ERROR: LoadError: BoundsError: attempt to access 6-element Vector{Float64} at index [-1]
+Stacktrace:
+ [1] throw_boundserror(A::Vector{Float64}, I::Tuple{Int64})
+   @ Base ./essentials.jl:14
+ [2] getindex
+   @ ./essentials.jl:916 [inlined]
+ [3] AdvanceResultWaitOneStep
+   @ ~/TestTraceTradeoff/code/Functions_main_messy.jl:88 [inlined]
+ [4] AdvanceInfectedOneTimestep(StateOfNodes::Vector{Float64}, CountUpToStateChange::Vector{Float64}, GoalOfCountDown::Vector{Float64}, WhenInfectedWillInfectOthers::Matrix{Vector{Int64}}, TestArrivalTimeOfNodes::Vector{Float64}, ResultArrivalTimeOfNodes::Vector{Float64}, NodeCanTestPositive::Vector{Float64}, TraceNodesChildren::Vector{Float64}, MaximumAllowedInfected::Int64, R0::Float64, MeanOfLognormal::Float64, WaitBeforeTestResult::Float64, NumberOfRecovered::Int64, ProbabilityFalseNegativeTest::Float64, OffspringDistribution::String, InfectiousProfile::String, pTestDistribution::Matrix{Vector{Float64}})
+   @ Main ~/TestTraceTradeoff/code/Functions_main_messy.jl:71
+ [5] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc_Se.jl:145 [inlined]
+ [6] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl:65
+ERROR: LoadError: BoundsError: attempt to access 6-element Vector{Float64} at index [-1]
+Stacktrace:
+ [1] throw_boundserror(A::Vector{Float64}, I::Tuple{Int64})
+   @ Base ./essentials.jl:14
+ [2] getindex
+   @ ./essentials.jl:916 [inlined]
+ [3] AdvanceResultWaitOneStep
+   @ ~/TestTraceTradeoff/code/Functions_main_messy.jl:88 [inlined]
+ [4] AdvanceInfectedOneTimestep(StateOfNodes::Vector{Float64}, CountUpToStateChange::Vector{Float64}, GoalOfCountDown::Vector{Float64}, WhenInfectedWillInfectOthers::Matrix{Vector{Int64}}, TestArrivalTimeOfNodes::Vector{Float64}, ResultArrivalTimeOfNodes::Vector{Float64}, NodeCanTestPositive::Vector{Float64}, TraceNodesChildren::Vector{Float64}, MaximumAllowedInfected::Int64, R0::Float64, MeanOfLognormal::Float64, WaitBeforeTestResult::Float64, NumberOfRecovered::Int64, ProbabilityFalseNegativeTest::Float64, OffspringDistribution::String, InfectiousProfile::String, pTestDistribution::Matrix{Vector{Float64}})
+   @ Main ~/TestTraceTradeoff/code/Functions_main_messy.jl:71
+ [5] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc_Se.jl:145 [inlined]
+ [6] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl:65
+ERROR: LoadError: BoundsError: attempt to access 6-element Vector{Float64} at index [-1]
+Stacktrace:
+ [1] throw_boundserror(A::Vector{Float64}, I::Tuple{Int64})
+   @ Base ./essentials.jl:14
+ [2] getindex
+   @ ./essentials.jl:916 [inlined]
+ [3] AdvanceResultWaitOneStep
+   @ ~/TestTraceTradeoff/code/Functions_main_messy.jl:88 [inlined]
+ [4] AdvanceInfectedOneTimestep(StateOfNodes::Vector{Float64}, CountUpToStateChange::Vector{Float64}, GoalOfCountDown::Vector{Float64}, WhenInfectedWillInfectOthers::Matrix{Vector{Int64}}, TestArrivalTimeOfNodes::Vector{Float64}, ResultArrivalTimeOfNodes::Vector{Float64}, NodeCanTestPositive::Vector{Float64}, TraceNodesChildren::Vector{Float64}, MaximumAllowedInfected::Int64, R0::Float64, MeanOfLognormal::Float64, WaitBeforeTestResult::Float64, NumberOfRecovered::Int64, ProbabilityFalseNegativeTest::Float64, OffspringDistribution::String, InfectiousProfile::String, pTestDistribution::Matrix{Vector{Float64}})
+   @ Main ~/TestTraceTradeoff/code/Functions_main_messy.jl:71
+ [5] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc_Se.jl:145 [inlined]
+ [6] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl:65
+ERROR: LoadError: BoundsError: attempt to access 6-element Vector{Float64} at index [-1]
+Stacktrace:
+ [1] throw_boundserror(A::Vector{Float64}, I::Tuple{Int64})
+   @ Base ./essentials.jl:14
+ [2] getindex
+   @ ./essentials.jl:916 [inlined]
+ [3] AdvanceResultWaitOneStep
+   @ ~/TestTraceTradeoff/code/Functions_main_messy.jl:88 [inlined]
+ [4] AdvanceInfectedOneTimestep(StateOfNodes::Vector{Float64}, CountUpToStateChange::Vector{Float64}, GoalOfCountDown::Vector{Float64}, WhenInfectedWillInfectOthers::Matrix{Vector{Int64}}, TestArrivalTimeOfNodes::Vector{Float64}, ResultArrivalTimeOfNodes::Vector{Float64}, NodeCanTestPositive::Vector{Float64}, TraceNodesChildren::Vector{Float64}, MaximumAllowedInfected::Int64, R0::Float64, MeanOfLognormal::Float64, WaitBeforeTestResult::Float64, NumberOfRecovered::Int64, ProbabilityFalseNegativeTest::Float64, OffspringDistribution::String, InfectiousProfile::String, pTestDistribution::Matrix{Vector{Float64}})
+   @ Main ~/TestTraceTradeoff/code/Functions_main_messy.jl:71
+ [5] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc_Se.jl:145 [inlined]
+ [6] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl:65
+ERROR: LoadError: BoundsError: attempt to access 6-element Vector{Float64} at index [-1]
+Stacktrace:
+ [1] throw_boundserror(A::Vector{Float64}, I::Tuple{Int64})
+   @ Base ./essentials.jl:14
+ [2] getindex
+   @ ./essentials.jl:916 [inlined]
+ [3] AdvanceResultWaitOneStep
+   @ ~/TestTraceTradeoff/code/Functions_main_messy.jl:88 [inlined]
+ [4] AdvanceInfectedOneTimestep(StateOfNodes::Vector{Float64}, CountUpToStateChange::Vector{Float64}, GoalOfCountDown::Vector{Float64}, WhenInfectedWillInfectOthers::Matrix{Vector{Int64}}, TestArrivalTimeOfNodes::Vector{Float64}, ResultArrivalTimeOfNodes::Vector{Float64}, NodeCanTestPositive::Vector{Float64}, TraceNodesChildren::Vector{Float64}, MaximumAllowedInfected::Int64, R0::Float64, MeanOfLognormal::Float64, WaitBeforeTestResult::Float64, NumberOfRecovered::Int64, ProbabilityFalseNegativeTest::Float64, OffspringDistribution::String, InfectiousProfile::String, pTestDistribution::Matrix{Vector{Float64}})
+   @ Main ~/TestTraceTradeoff/code/Functions_main_messy.jl:71
+ [5] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc_Se.jl:145 [inlined]
+ [6] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl:65
+ERROR: LoadError: BoundsError: attempt to access 6-element Vector{Float64} at index [-1]
+Stacktrace:
+ [1] throw_boundserror(A::Vector{Float64}, I::Tuple{Int64})
+   @ Base ./essentials.jl:14
+ [2] getindex
+   @ ./essentials.jl:916 [inlined]
+ [3] AdvanceResultWaitOneStep
+   @ ~/TestTraceTradeoff/code/Functions_main_messy.jl:88 [inlined]
+ [4] AdvanceInfectedOneTimestep(StateOfNodes::Vector{Float64}, CountUpToStateChange::Vector{Float64}, GoalOfCountDown::Vector{Float64}, WhenInfectedWillInfectOthers::Matrix{Vector{Int64}}, TestArrivalTimeOfNodes::Vector{Float64}, ResultArrivalTimeOfNodes::Vector{Float64}, NodeCanTestPositive::Vector{Float64}, TraceNodesChildren::Vector{Float64}, MaximumAllowedInfected::Int64, R0::Float64, MeanOfLognormal::Float64, WaitBeforeTestResult::Float64, NumberOfRecovered::Int64, ProbabilityFalseNegativeTest::Float64, OffspringDistribution::String, InfectiousProfile::String, pTestDistribution::Matrix{Vector{Float64}})
+   @ Main ~/TestTraceTradeoff/code/Functions_main_messy.jl:71
+ [5] macro expansion
+   @ ~/TestTraceTradeoff/code/mainhpc_Se.jl:145 [inlined]
+ [6] top-level scope
+   @ ./timing.jl:421
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl:65
