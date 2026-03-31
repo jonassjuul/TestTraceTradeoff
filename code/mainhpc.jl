@@ -62,6 +62,11 @@ AppendLineToFile(string(DirectoryToSaveResults,FilenameToSaveResults),FirstLineI
 #   1. Contact tracing efficiency (probability that a child is traced when parent gets tested positive.)
 #   2. Test sensitivity
 
+if WaitBeforeTestTaken + WaitBeforeTestResult == 0 #only run with one test sensitivity value if there is a delay (slow test)
+    linspace = 26
+    ProbabilityChildIsTraced = 0.5000000000000001
+end
+
 elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
     # Each time model is run for a new Tracing Efficiency Value, increase ProbabilityChildIsTraced
     global ProbabilityChildIsTraced += 0.02;
