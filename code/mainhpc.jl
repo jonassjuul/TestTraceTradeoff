@@ -50,11 +50,11 @@ FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfIn
 FirstLineInFile = string("False negative test rate,","Tracing efficiency,","N_infected_done,","N_recovered,","ReffMean,","ReffStd,","ReffTheoretical,","N_traced");
 
 #Check if file already exists and handle accordingly
-if isfile(string(DirectoryToSaveResults,FilenameToSaveResults))
-    println("ERROR: File already exists: ", string(DirectoryToSaveResults,FilenameToSaveResults))
-    println("Please remove the existing file or change the filename to avoid overwriting data.")
-    error("Execution stopped to prevent overwriting existing file.")
-end
+# if isfile(string(DirectoryToSaveResults,FilenameToSaveResults))
+#     println("ERROR: File already exists: ", string(DirectoryToSaveResults,FilenameToSaveResults))
+#     println("Please remove the existing file or change the filename to avoid overwriting data.")
+#     error("Execution stopped to prevent overwriting existing file.")
+# end
 
 AppendLineToFile(string(DirectoryToSaveResults,FilenameToSaveResults),FirstLineInFile);
 
