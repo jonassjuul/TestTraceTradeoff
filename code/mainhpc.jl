@@ -47,7 +47,7 @@ DirectoryToSaveResults = "code/OutputsHPC/";
 FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfInfected,"_Nexp",NumberOfExperiments,"_R0",R0,"_WaitBeforeTestTaken",Int(WaitBeforeTestTaken),"_WaitBeforeTestResult",Int(WaitBeforeTestResult), "_Asymptomatics",AsymptomaticFractionOfInfected,"_InfectiousProfile",InfectiousProfile,"_OffspringDistribution", OffspringDistribution,".txt");
 
 # First list in filename where results will be saved specifies columns
-# FirstLineInFile = string("False negative test rate,","Tracing efficiency,","N_infected_done,","N_recovered,","ReffMean,","ReffStd,","ReffTheoretical,","N_traced");
+FirstLineInFile = string("False negative test rate,","Tracing efficiency,","N_infected_done,","N_recovered,","ReffMean,","ReffStd,","ReffTheoretical,","N_traced");
 
 #Check if file already exists and handle accordingly
 # if isfile(string(DirectoryToSaveResults,FilenameToSaveResults))
@@ -56,7 +56,7 @@ FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfIn
 #     error("Execution stopped to prevent overwriting existing file.")
 # end
 
-AppendLineToFile(string(DirectoryToSaveResults,FilenameToSaveResults),FirstLineInFile);
+# AppendLineToFile(string(DirectoryToSaveResults,FilenameToSaveResults),FirstLineInFile);
 
 # Loop over different choices for 
 #   1. Contact tracing efficiency (probability that a child is traced when parent gets tested positive.)
