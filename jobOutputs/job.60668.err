@@ -1,0 +1,7 @@
+ERROR: LoadError: Execution stopped to prevent overwriting existing file.
+Stacktrace:
+ [1] error(s::String)
+   @ Base ./error.jl:35
+ [2] top-level scope
+   @ ~/TestTraceTradeoff/code/mainhpc.jl:56
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc.jl:53
