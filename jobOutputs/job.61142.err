@@ -1,0 +1,5 @@
+ERROR: LoadError: UndefVarError: `FirstLineInFile` not defined in `Main`
+Stacktrace:
+ [1] top-level scope
+   @ ~/TestTraceTradeoff/code/mainhpc.jl:47
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc.jl:47
