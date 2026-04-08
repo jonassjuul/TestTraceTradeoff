@@ -425,8 +425,7 @@ def make_fig2(X,Y,Z,delays,interpolate = False,figname=None,heatmap='bwr',R_cont
     # AX12 : Colormap Reff
     # ----
     ax12 = plt.subplot2grid(plot_dimension,(13,2),rowspan=11,colspan=1)
-
-    im = plt.pcolormesh(X,Y,gaussian_filter(Z,0),cmap='viridis')
+    im = plt.pcolormesh(X,Y,gaussian_filter(Z,0),cmap='viridis_r')
     
 
  

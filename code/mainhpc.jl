@@ -44,30 +44,25 @@ linspace = 51;
 DirectoryToSaveResults = "code/OutputsHPC/";
 
 # Define Filename where results will be saved
-FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfInfected,"_Nexp",NumberOfExperiments,"_R0",R0,"_WaitBeforeTestTaken",Int(WaitBeforeTestTaken),"_WaitBeforeTestResult",Int(WaitBeforeTestResult), "_Asymptomatics",AsymptomaticFractionOfInfected,"_InfectiousProfile",InfectiousProfile,"_OffspringDistribution", OffspringDistribution,".txt");
+FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfInfected,"_Nexp",NumberOfExperiments,"_R0",R0,"_WaitBeforeTestTaken",Int(WaitBeforeTestTaken),"_WaitBeforeTestResult",Int(WaitBeforeTestResult), "_Asymptomatics",AsymptomaticFractionOfInfected,"_InfectiousProfile",InfectiousProfile,"_OffspringDistribution", OffspringDistribution,"_no tracing.txt");
 
 # First list in filename where results will be saved specifies columns
 FirstLineInFile = string("False negative test rate,","Tracing efficiency,","N_infected_done,","N_recovered,","ReffMean,","ReffStd,","ReffTheoretical,","N_traced");
 
-#Check if file already exists and handle accordingly
-# if isfile(string(DirectoryToSaveResults,FilenameToSaveResults))
-#     println("ERROR: File already exists: ", string(DirectoryToSaveResults,FilenameToSaveResults))
-#     println("Please remove the existing file or change the filename to avoid overwriting data.")
-#     error("Execution stopped to prevent overwriting existing file.")
-# end
+# Check if file already exists and handle accordingly
+if isfile(string(DirectoryToSaveResults,FilenameToSaveResults))
+    println("ERROR: File already exists: ", string(DirectoryToSaveResults,FilenameToSaveResults))
+    println("Please remove the existing file or change the filename to avoid overwriting data.")
+    error("Execution stopped to prevent overwriting existing file.")
+end
 
-# AppendLineToFile(string(DirectoryToSaveResults,FilenameToSaveResults),FirstLineInFile);
+AppendLineToFile(string(DirectoryToSaveResults,FilenameToSaveResults),FirstLineInFile);
 
 # Loop over different choices for 
 #   1. Contact tracing efficiency (probability that a child is traced when parent gets tested positive.)
 #   2. Test sensitivity
 
-if WaitBeforeTestTaken + WaitBeforeTestResult == 0 #only run with one test sensitivity value if there is a delay (slow test)
-    linspace = 26
-    ProbabilityChildIsTraced = 0.5000000000000001
-end
-
-elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
+elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:1
     # Each time model is run for a new Tracing Efficiency Value, increase ProbabilityChildIsTraced
     global ProbabilityChildIsTraced += 0.02;
     global WaitBeforeTestTaken = WaitBeforeTestTaken;
@@ -82,7 +77,7 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
         testsentivitylinspace = linspace
     end
 
-    for TestSensitivityValueNumber = 1:51
+    for TestSensitivityValueNumber = 1:linspace
         # Each time model is run for a new Tracing Efficiency Value, increase ProbabilityFalseNegativeTest
         global ProbabilityFalseNegativeTest += 0.02;
         # Print progress.
