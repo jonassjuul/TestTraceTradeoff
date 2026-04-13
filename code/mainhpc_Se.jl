@@ -94,7 +94,7 @@ elapsed_time = @elapsed for TracingEfficiencyValueNumber = 1:linspace
         timetraced_traced_each = [Any[] for _ in 1:NumberOfExperiments]
         GoalOfCountDown_untraced_each = [Any[] for _ in 1:NumberOfExperiments] #store conditioned infection period lengths for untraced nodes for estimating the theoretical Reff
         # Do NumberOfExperiments runs for each parameter combination. 
-        for ExperimentNumber = 1:NumberOfExperiments
+        @threads for ExperimentNumber = 1:NumberOfExperiments
             #println("Experiment number\t",ExperimentNumber,"\tof:\t",NumberOfExperiments)
             # Define variables and vectors for each run.
             # -------

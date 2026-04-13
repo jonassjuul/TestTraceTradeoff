@@ -271,13 +271,13 @@ def make_fig2(X,Y,Z,delays,interpolate = False,figname=None,heatmap='bwr',R_cont
     breakingPoint_x = (np.argmin(np.abs(ZZ[40,:])))/len(ZZ[:,0])
     print(breakingPoint_x)
     
-    ax0.annotate('Breaking point', xy=(breakingPoint_x, 1.2), xytext=(0., 20),xycoords="axes fraction",textcoords="offset points",
+    ax0.annotate('Breaking point', xy=(breakingPoint_x, 1), xytext=(0., 20),xycoords="axes fraction",textcoords="offset points",
                  va="center",ha="center",fontsize=EVEN_SMALLER_SIZE,
             arrowprops=dict(arrowstyle='-|>',facecolor='black'),
             )
     
-    ax0.text(0.0,.85,"Rapid better",fontsize=EXTREMELY_SMALL_SIZE,ha="left")    
-    ax0.text(1.00,.85,"Accurate better",fontsize=EXTREMELY_SMALL_SIZE,ha="right")    
+    #ax0.text(0.0,.85,"Rapid better",fontsize=EXTREMELY_SMALL_SIZE,ha="left")    
+    #ax0.text(1.00,.85,"Accurate better",fontsize=EXTREMELY_SMALL_SIZE,ha="right")    
         
     ax0.text(-0.10,1.02,r"A",fontweight='bold',fontsize=BIGGER_SIZE,ha="left",va="top")
     
@@ -303,12 +303,12 @@ def make_fig2(X,Y,Z,delays,interpolate = False,figname=None,heatmap='bwr',R_cont
     breakingPoint_x = (np.argmin(np.abs(ZZ[40,:])))/len(ZZ[:,0])
     print(breakingPoint_x)
 
-    ax1.annotate('', xy=(breakingPoint_x, 1.2), xytext=(0., 20),xycoords="axes fraction",textcoords="offset points",
+    ax1.annotate('', xy=(breakingPoint_x, 1), xytext=(0., 20),xycoords="axes fraction",textcoords="offset points",
                  va="center",ha="center",
             arrowprops=dict(arrowstyle='-|>',facecolor='black'),
             )    
-    ax1.text(0.0,.85,"Rapid better",fontsize=EXTREMELY_SMALL_SIZE,ha="left")    
-    ax1.text(1.,.85,"Accurate better",fontsize=EXTREMELY_SMALL_SIZE,ha="right")    
+    #ax1.text(0.0,.85,"Rapid better",fontsize=EXTREMELY_SMALL_SIZE,ha="left")    
+    #ax1.text(1.,.85,"Accurate better",fontsize=EXTREMELY_SMALL_SIZE,ha="right")    
     
     # Bar, delay 4
     ax2 = plt.subplot2grid(plot_dimension,(21-3,0),rowspan=2,colspan=1)
@@ -330,12 +330,12 @@ def make_fig2(X,Y,Z,delays,interpolate = False,figname=None,heatmap='bwr',R_cont
     breakingPoint_x = (np.argmin(np.abs(ZZ[40,:])))/len(ZZ[:,0])
     print(breakingPoint_x)
 
-    ax2.annotate('', xy=(breakingPoint_x, 1.2), xytext=(0., 20),xycoords="axes fraction",textcoords="offset points",
+    ax2.annotate('', xy=(breakingPoint_x, 1), xytext=(0., 20),xycoords="axes fraction",textcoords="offset points",
                  va="center",ha="center",
             arrowprops=dict(arrowstyle='-|>',facecolor='black'),
             )        
-    ax2.text(0.0,.85,"Rapid better",fontsize=EXTREMELY_SMALL_SIZE,ha="left")    
-    ax2.text(1.,.85,"Accurate better",fontsize=EXTREMELY_SMALL_SIZE,ha="right")    
+    #ax2.text(0.0,.85,"Rapid better",fontsize=EXTREMELY_SMALL_SIZE,ha="left")    
+    #ax2.text(1.,.85,"Accurate better",fontsize=EXTREMELY_SMALL_SIZE,ha="right")    
         
     '''
     MIDDLE 1 : 
