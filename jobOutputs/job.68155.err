@@ -1,0 +1,23 @@
+ERROR: LoadError: SystemError: opening file "code/OutputsHPC1/JULIA_TestSensitivity_Istart100_Nexp500_R02.0_WaitBeforeTestTaken0_WaitBeforeTestResult0_Asymptomatics0.3_InfectiousProfileempirical_OffspringDistributionnegativebinomial_Se.txt": No such file or directory
+Stacktrace:
+  [1] systemerror(p::String, errno::Int32; extrainfo::Nothing)
+    @ Base ./error.jl:176
+  [2] systemerror
+    @ ./error.jl:175 [inlined]
+  [3] open(fname::String; lock::Bool, read::Nothing, write::Nothing, create::Nothing, truncate::Nothing, append::Bool)
+    @ Base ./iostream.jl:295
+  [4] open
+    @ ./iostream.jl:277 [inlined]
+  [5] open(fname::String, mode::String; lock::Bool)
+    @ Base ./iostream.jl:358
+  [6] open(fname::String, mode::String)
+    @ Base ./iostream.jl:357
+  [7] open(::var"#1#2"{String}, ::String, ::Vararg{String}; kwargs::@Kwargs{})
+    @ Base ./io.jl:408
+  [8] open
+    @ ./io.jl:407 [inlined]
+  [9] AppendLineToFile(FileDestination::String, StringToSave::String)
+    @ Main ~/TestTraceTradeoff/code/Functions_main_messy.jl:170
+ [10] top-level scope
+    @ ~/TestTraceTradeoff/code/mainhpc_Se.jl:57
+in expression starting at /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl:57
