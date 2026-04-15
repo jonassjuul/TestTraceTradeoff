@@ -41,10 +41,10 @@ ProbabilityFalseNegativeTest = -0.02;
 linspace = 51;
 #--------------------
 # Define directory where results will be saved
-DirectoryToSaveResults = "code/outputsHPC1";
+DirectoryToSaveResults = "code/outputsHPC/";
 
 # Define Filename where results will be saved
-FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfInfected,"_Nexp",NumberOfExperiments,"_R0",R0,"_WaitBeforeTestTaken",Int(WaitBeforeTestTaken),"_WaitBeforeTestResult",Int(WaitBeforeTestResult), "_Asymptomatics",AsymptomaticFractionOfInfected,"_InfectiousProfile",InfectiousProfile,"_OffspringDistribution", OffspringDistribution,"_Se.txt");
+FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfInfected,"_Nexp",NumberOfExperiments,"_R0",R0,"_WaitBeforeTestTaken",Int(WaitBeforeTestTaken),"_WaitBeforeTestResult",Int(WaitBeforeTestResult), "_Asymptomatics",AsymptomaticFractionOfInfected,"_InfectiousProfile",InfectiousProfile,"_OffspringDistribution", OffspringDistribution,"_Se_", ARGS[7],".txt");
 
 # First list in filename where results will be saved specifies columns
 FirstLineInFile = string("False negative test rate,","Tracing efficiency,","N_infected_done,","N_recovered,","ReffMean,","ReffStd,","ReffTheoretical,","N_traced");

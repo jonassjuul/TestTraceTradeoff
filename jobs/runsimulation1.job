@@ -14,4 +14,4 @@ module load Julia
 
 # Run the Julia script (Argument order: testwait, resultwait, Pasymp, R0, OffspringDistribution, InfectiousProfile)
 
-JULIA_NUM_THREADS=8 julia /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl 0.0 0.0 0.3 2.0 "negativebinomial" "empirical" 
+JULIA_NUM_THREADS=8 julia /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl 0.0 0.0 0.3 2.0 "negativebinomial" "empirical" 4
