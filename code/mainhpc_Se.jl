@@ -41,7 +41,7 @@ ProbabilityFalseNegativeTest = -0.02;
 linspace = 51;
 #--------------------
 # Define directory where results will be saved
-DirectoryToSaveResults = "code/outputsHPC/";
+DirectoryToSaveResults = "code/OutputsHPC/";
 
 # Define Filename where results will be saved
 FilenameToSaveResults = string("JULIA_TestSensitivity_Istart" ,InitialNumberOfInfected,"_Nexp",NumberOfExperiments,"_R0",R0,"_WaitBeforeTestTaken",Int(WaitBeforeTestTaken),"_WaitBeforeTestResult",Int(WaitBeforeTestResult), "_Asymptomatics",AsymptomaticFractionOfInfected,"_InfectiousProfile",InfectiousProfile,"_OffspringDistribution", OffspringDistribution,"_Se_", ARGS[7],".txt");

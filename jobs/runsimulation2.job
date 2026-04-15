@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=8        # Schedule cores
 #SBATCH --time=24:00:00     
 #SBATCH --partition=scavenge    # Run on scavenge queue (all nodes, low priority)
-#SBATCH --nodelist=cn8
+#SBATCH --nodelist=cn9
 
 # Print out the hostname of the node the job is running on
 
@@ -14,5 +14,5 @@ module load Julia
 
 # Run the Julia script (Argument order: testwait, resultwait, Pasymp, R0, OffspringDistribution, InfectiousProfile)
 
-JULIA_NUM_THREADS=8 julia /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl 0.0 0.0 0.3 2.0 "negativebinomial" "empirical" 4
+JULIA_NUM_THREADS=8 julia /home/morah/TestTraceTradeoff/code/mainhpc_Se.jl 0.0 0.0 0.3 2.0 "negativebinomial" "empirical" 5
 
