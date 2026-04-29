@@ -239,7 +239,7 @@ def make_fig2(X,Y,Z,delays,interpolate = False,figname=None,heatmap='bwr',R_cont
     fontsize_small = 12
     
     
-    gauss_smooth = .25
+    gauss_smooth = .75
     
     
     
